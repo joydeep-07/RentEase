@@ -77,7 +77,7 @@
   --accent-green: #4ade80;
 
   /* Status */
-  --sale: #f87171;
+  --sale: #df3a3a;
   --success: #4ade80;
   --warning: #fde047;
   --info: #7dd3fc;
@@ -98,6 +98,11 @@
     color 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
+}
+
+body{
+  background-color: var(--bg-main);
+  color: var(--text-main);;
 }
 
 @font-face {
