@@ -1,16 +1,29 @@
-# React + Vite
+#  RentEase – Furniture & Appliance Rental Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A modern platform that allows **students and working professionals** to rent essential furniture and appliances on a **monthly subscription basis** instead of buying them.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Overview
 
-## React Compiler
+Students and working professionals frequently relocate for education or jobs. Purchasing furniture and appliances can be expensive and inconvenient due to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-  High upfront costs  
+-  Maintenance responsibilities  
+-  Relocation challenges  
 
-## Expanding the ESLint configuration
+**RentEase** solves this problem by providing a **flexible monthly rental system** for essential household items. Users can rent furniture and appliances easily, making relocation and temporary living more convenient and affordable.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+- 🛋️ **Furniture Rentals** – Beds, tables, chairs, wardrobes, etc.
+- ⚡ **Appliance Rentals** – Refrigerators, washing machines, microwaves, etc.
+- 📅 **Monthly Subscription Model**
+- 💳 **Affordable Pricing**
+- 🔄 **Flexible Rental Periods**
+- 📦 **Easy Relocation Support**
+- 👤 **User Authentication**
+- 📱 **Responsive UI**
+
