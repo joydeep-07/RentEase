@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import UserDetail from "../ui/UserDetail";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
@@ -44,6 +45,12 @@ const Navbar = () => {
               2
             </span>
           </Link>
+        )}
+
+        {isLogin && (
+          <>
+            <UserDetail />
+          </>
         )}
 
         {/* Show Login button if NOT logged in */}

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLogin: true,
+  isLogin: true, // Currently using Boolean value to build the ui
 };
 
 const authSlice = createSlice({
