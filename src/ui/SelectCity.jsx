@@ -10,12 +10,13 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
 
   const [searchValue, setSearchValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(value || "");
 
   const openDrawer = () => {
     gsap.to(drawerRef.current, {
       x: 0,
-      duration: 0.45,
-      ease: "power3.out",
+      duration: 0.25,
+      ease: "easeInOut",
     });
 
     gsap.to(overlayRef.current, {
@@ -45,13 +46,23 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
      place.address?.town ||
      place.address?.village ||
      place.address?.state_district ||
-     place.display_name;
+     "";
 
-   setSearchValue(city);
+   const state = place.address?.state || "";
+   const country = place.address?.country || "";
+
+   const formattedLocation = [city, state, country].filter(Boolean).join(", ");
+
+   // store selected location
+   setSelectedLocation(formattedLocation);
 
    if (onChange) {
-     onChange(city);
+     onChange(formattedLocation);
    }
+
+   // clear input field
+   setSearchValue("");
+   setSuggestions([]);
 
    closeDrawer();
  };
@@ -99,16 +110,16 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
       >
         {/* Header */}
         <div className="flex items-center gap-3 px-5 py-4 border-b border-[var(--border-light)]">
-          <button onClick={closeDrawer}>
+          {/* <button onClick={closeDrawer}>
             <X className="h-5 w-5 text-[var(--text-secondary)]" />
-          </button>
+          </button> */}
 
           <div>
-            <h2 className="text-lg font-semibold text-[var(--text-main)]">
+            <h2 className="text-2xl font-heading text-[var(--text-main)]">
               Choose location
             </h2>
 
-            <p className="text-sm text-[var(--text-secondary)]">
+            <p className="text-sm text-[var(--text-muted)]">
               Please choose a location to get started.
             </p>
           </div>
@@ -173,7 +184,7 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
                 bg-[var(--bg-secondary)]"
               >
                 <div className="flex gap-3 items-center">
-                  <Navigation className="h-5 w-5 text-[var(--sale)]" />
+                  <Navigation className="h-5 w-5 text-[var(--accent-blue)]" />
 
                   <div className="text-left">
                     <p className="text-sm font-medium text-[var(--text-main)]">
@@ -204,7 +215,7 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
                 bg-[var(--bg-secondary)]"
               >
                 <div className="flex gap-3 items-center">
-                  <MapPin className="h-5 w-5 text-[var(--sale)]" />
+                  <MapPin className="h-5 w-5 text-[var(--accent-green)]" />
 
                   <div className="text-left">
                     <p className="text-sm font-medium text-[var(--text-main)]">
@@ -235,7 +246,7 @@ export default function SelectCity({ value = null, onChange, className = "" }) {
       >
         <MapPin className="h-4 w-4 text-[var(--sale)]" />
 
-        <span>{value || searchValue || "Select your location"}</span>
+        <span>{selectedLocation || "Select your location"}</span>
       </button>
       {createPortal(drawerUI, document.body)}
     </>
