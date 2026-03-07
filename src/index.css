@@ -105,13 +105,17 @@ body{
   color: var(--text-main);;
 }
 
+button{
+  cursor: pointer;
+}
+
 @font-face {
   font-family: "Heading";
   src: url("./assets/fonts/Marcellus.ttf") format("truetype");
   font-display: swap;
 }
 
-.heading-font {
+.font-heading {
   font-family: "Heading", sans-serif;
   font: italic;
 }
