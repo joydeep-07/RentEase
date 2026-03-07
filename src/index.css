@@ -120,6 +120,17 @@ button{
   font: italic;
 }
 
+@font-face {
+  font-family: "Fuzzy";
+  src: url("./assets/fonts/Fuzzy.ttf") format("truetype");
+  font-display: swap;
+}
+
+.font-fuzzy {
+  font-family: "Fuzzy", sans-serif;
+  font: italic;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
