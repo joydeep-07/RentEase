@@ -5,6 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDetail from "../ui/UserDetail";
+import SelectCity from "../ui/SelectCity";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
@@ -17,13 +18,17 @@ const Navbar = () => {
       sticky top-0 z-50"
     >
       {/* Logo */}
-      <Link
-        to="/"
-        className="text-2xl font-fuzzy font-semibold tracking-wide select-none"
-      >
-        <span className="text-[var(--accent-primary)]">Rent</span>
-        <span className=" text-[var(--text-main)]">Ease</span>
-      </Link>
+      <div className="flex gap-10">
+        <Link
+          to="/"
+          className="text-2xl font-fuzzy font-semibold tracking-wide select-none"
+        >
+          <span className="text-[var(--accent-primary)]">Rent</span>
+          <span className=" text-[var(--text-main)]">Ease</span>
+        </Link>
+
+        <SelectCity />
+      </div>
 
       {/* Right Section */}
       <div className="flex items-center gap-5">
