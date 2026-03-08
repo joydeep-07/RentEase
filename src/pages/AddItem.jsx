@@ -1,15 +1,15 @@
 import React from 'react'
-import AdminNav from '../components/AdminNav'
+import AdminNav from '../components/AdminNav';
 
-const SellerDashboard = () => {
+const AddItem = () => {
   return (
     <div>
       <AdminNav />
       <h1 className="py-15 uppercase text-center text-[var(--text-muted)] text-2xl">
-       All Orders will be visible here
+        Add New Item from here
       </h1>
     </div>
   );
 }
 
-export default SellerDashboard
+export default AddItem

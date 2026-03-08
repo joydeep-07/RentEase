@@ -12,6 +12,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Profile from "./pages/Profile";
 import SellerDashboard from "./pages/SellerDashboard";
 import Rents from "./pages/Rents";
+import AddItem from "./pages/AddItem";
+import Allitem from "./pages/Allitem";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -49,10 +51,28 @@ const App = () => {
         />
 
         <Route
+          path="add-item"
+          element={
+            <ProtectedRoute>
+              <AddItem />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="all-item"
+          element={
+            <ProtectedRoute>
+             <Allitem/>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="rents"
           element={
             <ProtectedRoute>
-             <Rents/>
+              <Rents />
             </ProtectedRoute>
           }
         />
