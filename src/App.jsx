@@ -6,7 +6,6 @@ import Root from "./layouts/Root";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
-import FurnitureDetail from "./pages/FurnitureDetail";
 import ColorTest from "./pages/ColorTest";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Profile from "./pages/Profile";
@@ -14,6 +13,7 @@ import SellerDashboard from "./pages/SellerDashboard";
 import Rents from "./pages/Rents";
 import AddItem from "./pages/AddItem";
 import Allitem from "./pages/Allitem";
+import ProductDetails from "./pages/ProductDetails";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -63,7 +63,7 @@ const App = () => {
           path="all-item"
           element={
             <ProtectedRoute>
-             <Allitem/>
+              <Allitem />
             </ProtectedRoute>
           }
         />
@@ -87,7 +87,7 @@ const App = () => {
         />
 
         <Route path="test" element={<ColorTest />} />
-        <Route path="furniture" element={<FurnitureDetail />} />
+        <Route path="/product-detail/:id" element={<ProductDetails />} />
       </Route>
     </Routes>
   );

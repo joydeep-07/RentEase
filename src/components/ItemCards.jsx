@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { FaHeart } from "react-icons/fa";
 
 const ItemCards = ({ items = [], limit }) => {
   const cardsRef = useRef([]);
+  const navigate = useNavigate();
 
   const visibleItems = limit ? items.slice(0, limit) : items;
 
@@ -20,19 +21,12 @@ const ItemCards = ({ items = [], limit }) => {
         opacity: 0,
         visibility: "hidden",
         pointerEvents: "none",
-        duration: 10,
-        ease: "power2.out",
       });
 
       card.addEventListener("mouseenter", () => {
         gsap.set(wishlist, {
           visibility: "visible",
           pointerEvents: "auto",
-        });
-
-        gsap.to(card, {
-          duration: 0.3,
-          ease: "power2.out",
         });
 
         gsap.to(image, {
@@ -45,17 +39,10 @@ const ItemCards = ({ items = [], limit }) => {
           x: 0,
           opacity: 1,
           duration: 0.35,
-          ease: "power3.out",
         });
       });
 
       card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          duration: 0.3,
-        });
-
         gsap.to(image, {
           scale: 1,
           duration: 0.5,
@@ -82,12 +69,13 @@ const ItemCards = ({ items = [], limit }) => {
         <div
           key={item.id}
           ref={(el) => (cardsRef.current[index] = el)}
-          className="group relative flex flex-col rounded-lg overflow-hidden
+          onClick={() => navigate(`/product-detail/${item.id}`)}
+          className="cursor-pointer group relative flex flex-col rounded-lg overflow-hidden
           border border-[var(--border-light)]
           bg-[var(--bg-secondary)]
           shadow-lg transition-all duration-300"
         >
-          {/* Wishlist Button */}
+          {/* Wishlist */}
           <button
             className="wishlist-btn absolute top-3 right-3 z-10 
             bg-[var(--text-main)]/80 backdrop-blur-md
@@ -126,8 +114,6 @@ const ItemCards = ({ items = [], limit }) => {
               </span>
             </p>
           </div>
-
-         
         </div>
       ))}
     </div>
