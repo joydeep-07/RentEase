@@ -5,8 +5,8 @@ const Filter = ({ filters, setFilters, categories = [], brands = [] }) => {
   const [openSections, setOpenSections] = useState({
     price: true,
     category: true,
-    brand: true,
-    condition: true,
+    brand: false,
+    condition: false,
     stock: true,
   });
 
@@ -38,7 +38,7 @@ const Filter = ({ filters, setFilters, categories = [], brands = [] }) => {
         w-90 min-w-[320px] h-[calc(100vh-5rem)] 
         overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--accent-primary)]/40
         scrollbar-track-transparent p-6 sticky top-20
-        transition-all duration-300 border border-[var(--border-light)]/20 bg-[var(--bg-tertiary)]/20
+        transition-all duration-300 mb-6
       `}
     >
       {/* Header */}

@@ -1,6 +1,7 @@
+// src/pages/Products.jsx
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { data } from "../utils/data";
+import { data } from "../utils/data"; // your mock data
 import ItemCards from "../components/ItemCards";
 import Suggestion from "../components/Suggestion";
 import Filter from "../components/Filter";
@@ -17,24 +18,25 @@ const Products = () => {
     inStock: false,
   });
 
-  // Search filter
+  // 1. Search filtering
   const searchFiltered = query
-    ? data.filter((item) => {
-        return (
+    ? data.filter(
+        (item) =>
           item.productName.toLowerCase().includes(query) ||
           item.brand.toLowerCase().includes(query) ||
           item.category.toLowerCase().includes(query) ||
           item.description.toLowerCase().includes(query) ||
-          item.keywords.some((k) => k.toLowerCase().includes(query))
-        );
-      })
+          item.keywords?.some((k) => k.toLowerCase().includes(query)),
+      )
     : data;
 
-  // Dynamic filter options based on searched data
-  const categories = [...new Set(searchFiltered.map((item) => item.category))];
-  const brands = [...new Set(searchFiltered.map((item) => item.brand))];
+  // 2. Available filter options (dynamic from current search results)
+  const categories = [
+    ...new Set(searchFiltered.map((item) => item.category)),
+  ].sort();
+  const brands = [...new Set(searchFiltered.map((item) => item.brand))].sort();
 
-  // Apply sidebar filters
+  // 3. Apply sidebar filters
   const filteredProducts = searchFiltered.filter((item) => {
     return (
       item.pricePerDay <= filters.price &&
@@ -45,49 +47,72 @@ const Products = () => {
     );
   });
 
-  const category =
+  // For suggestion section (using first product's category if available)
+  const firstCategory =
     filteredProducts.length > 0 ? filteredProducts[0].category : null;
 
   return (
-    <div className="flex mx-10 gap-8">
-      {/* FILTER SIDEBAR */}
-      <Filter
-        filters={filters}
-        setFilters={setFilters}
-        categories={categories}
-        brands={brands}
-      />
-
-      {/* PRODUCTS AREA */}
-      <div className="flex-1">
-        {query && (
-          <h1 className="text-xl font-semibold text-[var(--text-main)] px-6">
-            Search Results for: "{query}"
-          </h1>
-        )}
-
-        {/* Not found */}
-        {query && filteredProducts.length === 0 && (
-          <div className="text-center mt-16 text-[var(--text-secondary)]">
-            <h2 className="text-2xl font-semibold">Not found "{query}"</h2>
-            <p className="mt-2 text-sm">
-              Try searching with different keywords.
-            </p>
-          </div>
-        )}
-
-        {/* Products */}
-        {filteredProducts.length > 0 && <ItemCards items={filteredProducts} />}
-
-        {/* Suggestions */}
-        {category && (
-          <Suggestion
-            category={category}
-            query={query}
-            currentIds={filteredProducts.map((p) => p.id)}
+    <div className="flex min-h-screen bg-[var(--bg-primary)]">
+      {/* Sidebar - hidden on mobile, shown from lg+ */}
+      <aside className="hidden lg:block w-80 xl:w-96 shrink-0 ">
+        <div className="sticky top-16">
+          <Filter
+            filters={filters}
+            setFilters={setFilters}
+            categories={categories}
+            brands={brands}
           />
-        )}
-      </div>
+        </div>
+      </aside>
+
+      {/* Main content area */}
+      <main className="flex-1">
+        <div className="">
+          {/* Header / Search info */}
+          {query && (
+            <header className="">
+              <h1 className="text-2xl font-heading sm:text-3xl text-[var(--text-main)] ">
+                Results for <span className="text-[var(--accent-primary)] "> {query} </span>
+              </h1>
+              <p className="mt-2 text-[var(--text-secondary)]">
+                {filteredProducts.length}{" "}
+                {filteredProducts.length === 1 ? "item" : "items"} found
+              </p>
+            </header>
+          )}
+
+          {/* No results state */}
+          {query && filteredProducts.length === 0 && (
+            <div className="text-center py-20">
+              <h2 className="text-2xl font-semibold text-[var(--text-main)]">
+                No results found for "{query}"
+              </h2>
+              <p className="mt-4 text-[var(--text-secondary)] max-w-md mx-auto">
+                Try different keywords, adjust filters, or browse all
+                categories.
+              </p>
+            </div>
+          )}
+
+          {/* Product grid */}
+          {filteredProducts.length > 0 && (
+            <section className="py-8 mr-6">
+              <ItemCards items={filteredProducts} />
+            </section>
+          )}
+
+          {/* Related suggestions */}
+          {firstCategory && (
+            <section className=" border-t border-[var(--border-light)]/20 mr-6">
+              <Suggestion
+                category={firstCategory}
+                query={query}
+                currentIds={filteredProducts.map((p) => p.id)}
+              />
+            </section>
+          )}
+        </div>
+      </main>
     </div>
   );
 };

@@ -20,10 +20,10 @@ const Suggestion = ({ category, query, currentIds = [] }) => {
   if (suggestions.length === 0) return null;
 
   return (
-    <div className="mt-16">
-      <h2 className="text-xl font-semibold text-[var(--text-main)] px-6 mb-4">
-        You may also like
-      </h2>
+    <div className="mt-10 mb-6">
+      <h1 className="text-2xl font-heading sm:text-3xl pb-10 text-[var(--text-main)] ">
+       You might also like
+      </h1>
 
       <ItemCards items={suggestions} />
     </div>
