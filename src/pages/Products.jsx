@@ -1,7 +1,7 @@
 // src/pages/Products.jsx
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { data } from "../utils/data"; // your mock data
+import { data } from "../utils/data";
 import ItemCards from "../components/ItemCards";
 import Suggestion from "../components/Suggestion";
 import Filter from "../components/Filter";
@@ -18,7 +18,7 @@ const Products = () => {
     inStock: false,
   });
 
-  // 1. Search filtering
+  // 1️⃣ Search filtering
   const searchFiltered = query
     ? data.filter(
         (item) =>
@@ -30,13 +30,13 @@ const Products = () => {
       )
     : data;
 
-  // 2. Available filter options (dynamic from current search results)
+  // 2️⃣ Dynamic filter options
   const categories = [
     ...new Set(searchFiltered.map((item) => item.category)),
   ].sort();
   const brands = [...new Set(searchFiltered.map((item) => item.brand))].sort();
 
-  // 3. Apply sidebar filters
+  // 3️⃣ Apply sidebar filters
   const filteredProducts = searchFiltered.filter((item) => {
     return (
       item.pricePerDay <= filters.price &&
@@ -47,14 +47,18 @@ const Products = () => {
     );
   });
 
-  // For suggestion section (using first product's category if available)
+  // 4️⃣ Get category for suggestion
   const firstCategory =
-    filteredProducts.length > 0 ? filteredProducts[0].category : null;
+    filteredProducts.length > 0
+      ? filteredProducts[0].category
+      : searchFiltered.length > 0
+        ? searchFiltered[0].category
+        : null;
 
   return (
     <div className="flex min-h-screen bg-[var(--bg-primary)]">
-      {/* Sidebar - hidden on mobile, shown from lg+ */}
-      <aside className="hidden lg:block w-80 xl:w-96 shrink-0 ">
+      {/* Sidebar */}
+      <aside className="hidden lg:block w-80 xl:w-96 shrink-0">
         <div className="sticky top-16">
           <Filter
             filters={filters}
@@ -65,15 +69,17 @@ const Products = () => {
         </div>
       </aside>
 
-      {/* Main content area */}
+      {/* Main content */}
       <main className="flex-1">
-        <div className="">
-          {/* Header / Search info */}
+        <div>
+          {/* Header */}
           {query && (
-            <header className="">
-              <h1 className="text-2xl font-heading sm:text-3xl text-[var(--text-main)] ">
-                Results for <span className="text-[var(--accent-primary)] "> {query} </span>
+            <header>
+              <h1 className="text-2xl font-heading sm:text-3xl text-[var(--text-main)]">
+                Results for{" "}
+                <span className="text-[var(--accent-primary)]">{query}</span>
               </h1>
+
               <p className="mt-2 text-[var(--text-secondary)]">
                 {filteredProducts.length}{" "}
                 {filteredProducts.length === 1 ? "item" : "items"} found
@@ -81,12 +87,13 @@ const Products = () => {
             </header>
           )}
 
-          {/* No results state */}
+          {/* No results */}
           {query && filteredProducts.length === 0 && (
             <div className="text-center py-20">
               <h2 className="text-2xl font-semibold text-[var(--text-main)]">
                 No results found for "{query}"
               </h2>
+
               <p className="mt-4 text-[var(--text-secondary)] max-w-md mx-auto">
                 Try different keywords, adjust filters, or browse all
                 categories.
@@ -101,16 +108,14 @@ const Products = () => {
             </section>
           )}
 
-          {/* Related suggestions */}
-          {firstCategory && (
-            <section className=" border-t border-[var(--border-light)]/20 mr-6">
-              <Suggestion
-                category={firstCategory}
-                query={query}
-                currentIds={filteredProducts.map((p) => p.id)}
-              />
-            </section>
-          )}
+          {/* Suggestions (ALWAYS SHOW) */}
+          <section className="border-t border-[var(--border-light)]/20 mr-6">
+            <Suggestion
+              category={firstCategory}
+              query={query}
+              currentIds={filteredProducts.map((p) => p.id)}
+            />
+          </section>
         </div>
       </main>
     </div>
