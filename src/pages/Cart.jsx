@@ -1,4 +1,4 @@
-import { ChevronLeft, Delete, Trash } from "lucide-react";
+import { ChevronLeft, Trash } from "lucide-react";
 import React, { useState } from "react";
 
 const Cart = () => {
@@ -53,17 +53,18 @@ const Cart = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row py-16 w-7xl px-6 mx-auto text-[var(--text-main)]">
+    <div className="flex flex-col lg:flex-row py-10 md:py-16 max-w-7xl px-4 md:px-6 mx-auto text-[var(--text-main)] gap-10">
       {/* LEFT SIDE */}
-      <div className="flex-1 max-w-4xl">
-        <h1 className="text-4xl font-medium mb-6">
+      <div className="flex-1 w-full">
+        <h1 className="text-2xl md:text-4xl font-medium mb-6">
           <span className="font-heading"> Shopping Cart </span>
           <span className="text-sm text-[var(--accent-primary)]">
             {products.length} Items
           </span>
         </h1>
 
-        <div className="grid grid-cols-[2fr_1fr_1fr] text-[var(--accent-secondary)] text-base font-medium pb-3">
+        {/* HEADER */}
+        <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-[var(--accent-secondary)] text-base font-medium pb-3">
           <p className="text-left">Product Details</p>
           <p className="text-center">Subtotal</p>
           <p className="text-center">Action</p>
@@ -72,19 +73,20 @@ const Cart = () => {
         {products.map((product, index) => (
           <div
             key={index}
-            className="grid grid-cols-[2fr_1fr_1fr] text-[var(--text-secondary)] items-center text-sm md:text-base font-medium pt-3"
+            className="grid grid-cols-[2fr_1fr_auto] md:grid-cols-[2fr_1fr_1fr] gap-4 md:gap-0 text-[var(--text-secondary)] items-start text-sm md:text-base font-medium pt-4 border-b border-[var(--border-light)] pb-4"
           >
-            <div className="flex items-center md:gap-6 gap-3">
-              <div className="cursor-pointer w-24 h-24 flex items-center justify-center border border-[var(--border-light)] rounded overflow-hidden bg-[var(--bg-secondary)]">
+            {/* PRODUCT INFO */}
+            <div className="flex items-start gap-3 md:gap-6">
+              <div className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center border border-[var(--border-light)] rounded overflow-hidden bg-[var(--bg-secondary)]">
                 <img
-                  className="max-w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                   src={product.image}
                   alt={product.name}
                 />
               </div>
 
               <div>
-                <p className="hidden md:block font-semibold text-[var(--text-main)]">
+                <p className="font-semibold text-[var(--text-main)]">
                   {product.name}
                 </p>
 
@@ -92,45 +94,30 @@ const Cart = () => {
                   <p>
                     Size: <span>{product.size || "N/A"}</span>
                   </p>
-
-                  <div className="flex items-center gap-1">
-                    <p>Qty:</p>
-
-                    <select className="outline-none bg-transparent border border-[var(--border-light)] px-1 rounded">
-                      {Array(5)
-                        .fill("")
-                        .map((_, index) => (
-                          <option key={index} value={index + 1}>
-                            {index + 1}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
                 </div>
               </div>
             </div>
 
+            {/* SUBTOTAL */}
             <p className="text-center text-[var(--text-main)]">
               ${product.offerPrice * product.quantity}
             </p>
 
+            {/* ACTION */}
             <button className="cursor-pointer mx-auto text-[var(--sale)]">
               <Trash size={18} />
             </button>
           </div>
         ))}
-
-        <button className="group cursor-pointer flex items-center justify-center mt-8 gap-2 text-[var(--accent-blue)] font-medium">
-          <span>
-            <ChevronLeft size={18} />
-          </span>{" "}
+        <button className="group cursor-pointer flex items-center mt-8 gap-2 text-[var(--accent-blue)] font-medium">
+          <ChevronLeft size={18} />
           Continue Shopping
         </button>
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="max-w-[360px] w-full bg-[var(--bg-secondary)] p-5 max-md:mt-16 border border-[var(--border-light)] rounded">
-        <h2 className="text-xl md:text-xl font-medium text-[var(--text-main)]">
+      <div className="w-full lg:max-w-[360px] bg-[var(--bg-secondary)] p-5 border border-[var(--border-light)] rounded h-fit">
+        <h2 className="text-lg md:text-xl font-medium text-[var(--text-main)]">
           Order Summary
         </h2>
 
