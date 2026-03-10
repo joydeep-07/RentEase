@@ -66,7 +66,7 @@ export const data = [
       "frame",
     ],
     description:
-      "Experience ultimate relaxation with this high-quality wooden bed frame designed for durability and style...",
+      "Experience ultimate relaxation with this high-quality wooden bed frame designed for durability and style. Handcrafted from premium oak, it features a natural grain finish that complements any bedroom decor. The sturdy slats provide excellent mattress support, ensuring a peaceful night's sleep while adding a touch of rustic elegance to your home.",
     image: bed1,
     pricePerDay: 150,
     securityDeposit: 2000,
@@ -95,7 +95,7 @@ export const data = [
       "kids room",
     ],
     description:
-      "This premium bedroom bed offers a sophisticated aesthetic coupled with exceptional structural integrity...",
+      "This premium bedroom bed offers a sophisticated aesthetic coupled with exceptional structural integrity. Carved from rich mahogany, the vintage design brings a classic charm to smaller spaces or children's rooms. Despite its compact footprint, the frame is incredibly robust, offering a stable and stylish foundation for a deeply restorative sleeping experience.",
     image: bed2,
     pricePerDay: 140,
     securityDeposit: 1900,
@@ -124,7 +124,7 @@ export const data = [
       "premium",
     ],
     description:
-      "Indulge in pure luxury with this magnificent king-size bed...",
+      "Indulge in pure luxury with this magnificent king-size bed. Wrapped in plush, high-grade velvet, the oversized padded headboard offers a royal feel and comfortable back support for nighttime reading. This statement piece transforms any master suite into a high-end sanctuary, combining modern glamour with the expansive space needed for ultimate comfort.",
     image: bed3,
     pricePerDay: 180,
     securityDeposit: 2300,
@@ -152,7 +152,8 @@ export const data = [
       "guest room",
       "durable",
     ],
-    description: "A robust and durable bed built to withstand years of use...",
+    description:
+      "A robust and durable bed built to withstand years of use. Featuring a sleek, powder-coated iron frame, this industrial-style piece is perfect for those seeking a minimalist or loft-inspired look. Its reinforced structure prevents squeaking and wobbling, making it an ideal, low-maintenance choice for guest rooms or high-traffic rental properties.",
     image: bed4,
     pricePerDay: 130,
     securityDeposit: 1800,
@@ -181,7 +182,7 @@ export const data = [
       "simple",
     ],
     description:
-      "This modern wooden bed features clean lines and a contemporary finish...",
+      "This modern wooden bed features clean lines and a contemporary finish inspired by Scandinavian design. The low-profile platform eliminates the need for a box spring, creating a spacious and airy feel in your bedroom. Crafted from light-toned wood, it provides a warm yet minimalist aesthetic that fits perfectly with modern interiors.",
     image: bed5,
     pricePerDay: 160,
     securityDeposit: 2100,
@@ -209,7 +210,8 @@ export const data = [
       "bedroom",
       "sturdy",
     ],
-    description: "Embrace simplicity with this minimal style bed frame...",
+    description:
+      "Embrace simplicity with this minimal style bed frame. Constructed from authentic teakwood, known for its incredible strength and resistance to wear, this bed features a traditional slatted headboard and base. It offers a timeless look that highlights the natural beauty of wood grain, providing a sturdy and breathable sleeping environment.",
     image: bed6,
     pricePerDay: 120,
     securityDeposit: 1700,
@@ -238,7 +240,7 @@ export const data = [
       "practical",
     ],
     description:
-      "Looking for an affordable bed option? This pre-loved frame offers great value...",
+      "Looking for an affordable bed option? This pre-loved frame offers great value without compromising on comfort. Its compact twin-sized dimensions make it a practical choice for studio apartments, student dorms, or small spare rooms. The modern, unobtrusive design ensures it fits into tight spaces while providing a reliable night's rest.",
     image: bed7,
     pricePerDay: 100,
     securityDeposit: 1500,
@@ -267,7 +269,7 @@ export const data = [
       "elegant",
     ],
     description:
-      "This durable bedroom bed is engineered for longevity and consistent support...",
+      "This durable bedroom bed is engineered for longevity and consistent support. The grand high-poster design evokes a sense of colonial elegance, making it a striking centerpiece for any traditional bedroom. Made from heavy dark wood, it offers a solid and secure feel, perfect for those who appreciate architectural furniture details.",
     image: bed8,
     pricePerDay: 135,
     securityDeposit: 1800,
@@ -296,7 +298,7 @@ export const data = [
       "comfy",
     ],
     description:
-      "A remarkably comfortable double bed that provides ample space for a restful sleep...",
+      "A remarkably comfortable double bed that provides ample space for a restful sleep. It features a modern, cushioned headboard upholstered in soft, durable fabric, perfect for leaning back while watching TV or lounging. The sleek frame sits at a convenient height, offering a balanced mix of contemporary style and cozy comfort.",
     image: bed9,
     pricePerDay: 155,
     securityDeposit: 2000,
@@ -325,7 +327,7 @@ export const data = [
       "durable",
     ],
     description:
-      "This strong wooden bed combines traditional craftsmanship with modern durability...",
+      "This strong wooden bed combines traditional craftsmanship with modern durability. Built from solid pine, the frame is designed for heavy-duty use while maintaining a warm, natural aesthetic. Its simple yet functional design ensures easy assembly and long-term reliability, making it a versatile addition to any home looking for dependable furniture.",
     image: bed10,
     pricePerDay: 145,
     securityDeposit: 1900,
@@ -356,7 +358,7 @@ export const data = [
       "shooting",
     ],
     description:
-      "Capture breathtaking images with this professional DSLR camera...",
+      "Capture breathtaking images with this professional DSLR camera kit. Featuring a high-resolution sensor and intuitive controls, the EOS Rebel T7 is perfect for both aspiring photographers and experienced users. This kit includes a versatile lens, allowing you to master various shooting styles, from vivid portraits to expansive landscape photography effortlessly.",
     image: cam1,
     pricePerDay: 350,
     securityDeposit: 5000,
@@ -385,7 +387,7 @@ export const data = [
       "4k",
     ],
     description:
-      "This high-resolution camera delivers crisp and vibrant photos in any lighting condition...",
+      "This high-resolution full-frame camera delivers crisp, vibrant photos in any lighting condition. A staple for professional wedding and portrait photographers, the EOS 5D Mark IV offers exceptional dynamic range and advanced autofocus systems. Its robust build quality ensures reliability during long shoots, providing professional-grade performance for all your creative projects.",
     image: cam2,
     pricePerDay: 320,
     securityDeposit: 4800,
@@ -414,7 +416,7 @@ export const data = [
       "vlog",
     ],
     description:
-      "A compact mirrorless camera that packs incredible power into a portable frame...",
+      "A compact mirrorless camera that packs incredible power into a portable frame. The Sony Alpha a7 III is a favorite for content creators, offering stunning 4K video capabilities and lightning-fast autofocus. Its impressive low-light performance and eye-tracking technology make it an essential tool for capturing professional-grade stills and cinematic vlogs.",
     image: cam3,
     pricePerDay: 380,
     securityDeposit: 5200,
@@ -443,7 +445,7 @@ export const data = [
       "lightweight",
     ],
     description:
-      "This lightweight compact camera is perfect for capturing memories on the go...",
+      "This lightweight compact camera is perfect for capturing memories on the go. Designed specifically for vloggers and streamers, the Sony ZV-1 features a flip-out screen, advanced directional microphone, and specialized product showcase modes. It is the ultimate tool for YouTubers seeking high-quality video and audio in an ultra-portable, easy-to-use package.",
     image: cam4,
     pricePerDay: 300,
     securityDeposit: 4500,
@@ -472,7 +474,7 @@ export const data = [
       "landscape",
     ],
     description:
-      "An exceptional DSLR for photography lovers seeking depth and color accuracy...",
+      "An exceptional DSLR for photography lovers seeking depth and color accuracy. With its high-resolution sensor and expansive dynamic range, the Nikon D850 is a powerhouse for landscape, fashion, and studio photography. It offers incredible detail and speed, making it a reliable choice for professionals demanding the highest image quality possible.",
     image: cam5,
     pricePerDay: 360,
     securityDeposit: 5000,
@@ -501,7 +503,7 @@ export const data = [
       "autofocus",
     ],
     description:
-      "A reliable HD camera that excels in both photography and videography...",
+      "A reliable hybrid camera that excels in both photography and videography. The Nikon Z6 offers a smooth, intuitive shooting experience with advanced image stabilization and a high-performance autofocus system. Whether you are shooting fast-paced action or detailed cinematic video, this mirrorless system provides consistent, professional results in any environment.",
     image: cam6,
     pricePerDay: 310,
     securityDeposit: 4600,
@@ -530,7 +532,7 @@ export const data = [
       "pro",
     ],
     description:
-      "This advanced DSLR camera offers a massive sensor for incredible low-light performance...",
+      "This advanced mirrorless camera offers a highly sensitive sensor for incredible low-light performance. Designed for speed, the EOS R6 Mark II is a premier choice for wedding and sports photography. With its blistering continuous shooting rates and intelligent subject tracking, it ensures you never miss a fleeting moment of action.",
     image: cam7,
     pricePerDay: 370,
     securityDeposit: 5100,
@@ -559,7 +561,7 @@ export const data = [
       "eye tracking",
     ],
     description:
-      "A mirrorless compact camera that provides professional results in a pocket-sized package...",
+      "A mirrorless compact camera that provides professional results in a pocket-sized package. The Sony Alpha a6400 features industry-leading eye-tracking technology and a convenient flip screen, making it perfect for street photography and self-shooting. Its fast performance and small design ensure you can document your world with stunning clarity anywhere.",
     image: cam8,
     pricePerDay: 330,
     securityDeposit: 4800,
@@ -617,7 +619,7 @@ export const data = [
       "weather sealed",
     ],
     description:
-      "A professional-grade camera built for versatility and ruggedness...",
+      "A professional-grade camera built for versatility and ruggedness. The Nikon D7500 offers a weather-sealed body, making it an ideal companion for outdoor adventures and studio work alike. With exceptional dynamic range and low-light capabilities, this enthusiast-level camera provides the reliability and image quality needed to elevate your photography portfolio significantly.",
     image: cam10,
     pricePerDay: 340,
     securityDeposit: 4700,

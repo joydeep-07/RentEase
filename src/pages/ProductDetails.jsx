@@ -75,7 +75,7 @@ const ProductDetails = () => {
           <ul className="list-disc ml-4 mt-2 text-sm text-[var(--text-secondary)] space-y-1">
             <li>Brand: {product.brand}</li>
             <li>Condition: {product.condition}</li>
-            <li>{product.description}</li>
+            <li className="text-justify" >{product.description}</li>
           </ul>
 
           {/* Buttons */}
