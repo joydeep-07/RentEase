@@ -64,10 +64,10 @@ const Filter = ({ filters, setFilters, categories = [], brands = [] }) => {
   return (
     <div
       className="
-        w-90 min-w-[320px] h-[calc(100vh-5rem)]
+        w-90 min-w-[320px] min-h-screen
         overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--accent-primary)]/40
         scrollbar-track-transparent p-6 sticky top-20
-        transition-all duration-300 mb-6
+        transition-all duration-300 mb-16
       "
     >
       {/* Header */}

@@ -4,6 +4,7 @@ import { data } from "../utils/data";
 import ItemCards from "../components/ItemCards";
 import Suggestion from "../components/Suggestion";
 import Filter from "../components/Filter";
+import NotFound from "../components/NotFound";
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -79,7 +80,7 @@ const Products = () => {
         : null;
 
   return (
-    <div className="flex min-h-screen bg-[var(--bg-primary)]">
+    <div className="flex bg-[var(--bg-primary)]">
       {/* Sidebar */}
       <aside className="hidden lg:block w-80 xl:w-96 shrink-0">
         <div className="sticky top-16">
@@ -95,8 +96,8 @@ const Products = () => {
       {/* Main */}
       <main className="flex-1">
         <div>
-          {/* Header for search */}
-          {query && (
+          {/* hide this Header for search when    No results found for "{query}" */}
+          {query && filteredProducts.length > 0 && (
             <header>
               <h1 className="text-2xl font-heading sm:text-3xl text-[var(--text-main)]">
                 Results for{" "}
@@ -112,16 +113,21 @@ const Products = () => {
 
           {/* No results */}
           {query && filteredProducts.length === 0 && (
-            <div className="text-center py-20">
-              <h2 className="text-2xl font-semibold text-[var(--text-main)]">
-                No results found for "{query}"
-              </h2>
-
-              <p className="mt-4 text-[var(--text-secondary)] max-w-md mx-auto">
-                Try different keywords, adjust filters, or browse all
-                categories.
-              </p>
-            </div>
+            <>
+              <NotFound
+                heading={
+                  <h1 className="text-3xl font-heading sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-2">
+                   Nothing Matched {" "}
+                    <span className="bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)] bg-clip-text text-transparent">
+                    {query}
+                    </span>
+                  </h1>
+                }
+                msg={
+                  "Our little cat searched everywhere but found nothing. Try another keyword or relax the filters."
+                }
+              />
+            </>
           )}
 
           {/* DEFAULT VIEW → Category wise */}
@@ -148,8 +154,6 @@ const Products = () => {
               {Object.entries(groupedFilteredProducts).map(
                 ([category, items]) => (
                   <section className="mt-10" key={category}>
-                   
-
                     <ItemCards items={items} />
                   </section>
                 ),
