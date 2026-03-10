@@ -31,14 +31,15 @@ const App = () => {
 
   return (
     <>
-    <SmoothScroll/>
-    <ScrollToTop/>
+      <SmoothScroll />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
           <Route path="auth" element={<Auth />} />
           <Route path="products" element={<Products />} />
-
+          <Route path="test" element={<ColorTest />} />
+          <Route path="/product-detail/:id" element={<ProductDetails />} />
           <Route
             path="cart"
             element={
@@ -49,10 +50,28 @@ const App = () => {
           />
 
           <Route
+            path="rents"
+            element={
+              <ProtectedRoute>
+                <Rents />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="profile"
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="seller"
+            element={
+              <ProtectedRoute>
+                <SellerDashboard />
               </ProtectedRoute>
             }
           />
@@ -74,27 +93,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-
-          <Route
-            path="rents"
-            element={
-              <ProtectedRoute>
-                <Rents />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="seller"
-            element={
-              <ProtectedRoute>
-                <SellerDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route path="test" element={<ColorTest />} />
-          <Route path="/product-detail/:id" element={<ProductDetails />} />
         </Route>
       </Routes>
     </>
