@@ -10,13 +10,13 @@ const Testimonials = () => {
   return (
     <>
       <section className="bg-[var(--bg-main)] py-16 px-4 md:px-8 flex items-center justify-center">
-        <div className="max-w-8xl px-15 mx-auto">
+        <div className="max-w-8xl md:px-15 mx-auto">
           <div className="mb-12">
-            <h1 className="text-5xl font-heading font-medium text-[var(--text-main)] text-center md:text-start mb-4">
-              What people say
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-heading leading-tight mb-2">
+              What people <span className="text-[var(--accent-primary)] ">Say</span>
             </h1>
 
-            <p className="text-[var(--text-secondary)] text-sm/6 text-center md:text-start mx-auto md:mx-0 max-w-md">
+            <p className="text-sm md:text-base opacity-70 max-w-xl">
               See what our customers are saying as they build and launch
               projects at lightning speed.
             </p>
