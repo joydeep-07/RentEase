@@ -5,7 +5,7 @@ import ItemCards from "../components/ItemCards";
 import Suggestion from "../components/Suggestion";
 import Filter from "../components/Filter";
 import NotFound from "../components/NotFound";
-import { SlidersHorizontal, X } from "lucide-react";
+import { ArrowDownUp, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
 import { gsap } from "gsap";
 
 const Products = () => {
@@ -176,13 +176,21 @@ const closeMobileFilter = () => {
       <main className="flex-1">
         <div>
           {/* MOBILE FILTER BUTTON */}
-          <div className="lg:hidden mb-6">
+          <div className="lg:hidden border border-[var(--border-light)] flex justify-center mb-6">
             <button
               onClick={openMobileFilter}
-              className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[var(--accent-primary)] text-white shadow-md"
+              className="flex items-center gap-2 px-5 py-2 w-1/2 border-r border-[var(--border-light)] justify-center text-[var(--text-secondary)] shadow-md"
             >
               <SlidersHorizontal size={18} />
               Filters
+            </button>
+
+            <button
+              onClick={openMobileFilter}
+              className="flex items-center gap-2 px-5 py-2 w-1/2 justify-center text-[var(--text-secondary)] shadow-md"
+            >
+              <ArrowDownUp size={18} />
+              Short
             </button>
           </div>
 
