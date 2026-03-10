@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 import Search from "../components/Search";
-import { ShoppingCart, Search as SearchIcon } from "lucide-react";
+import { ShoppingCart, Search as SearchIcon, ChevronUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDetail from "../ui/UserDetail";
 import SelectCity from "../ui/SelectCity";
-
-import { Drawer, IconButton } from "@mui/material";
+import gsap from "gsap";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
   const [openSearch, setOpenSearch] = useState(false);
+  const drawerRef = useRef(null);
 
-  const handleOpenSearch = () => setOpenSearch(true);
-  const handleCloseSearch = () => setOpenSearch(false);
+  const openDrawer = () => setOpenSearch(true);
+
+  const closeDrawer = () => {
+    gsap.to(drawerRef.current, {
+      y: "-100%",
+      duration: 0.4,
+      ease: "power3.inOut",
+      onComplete: () => setOpenSearch(false),
+    });
+  };
+
+  useEffect(() => {
+    if (openSearch) {
+      gsap.fromTo(
+        drawerRef.current,
+        { y: "-100%" },
+        { y: "0%", duration: 0.4, ease: "power3.out" },
+      );
+    }
+  }, [openSearch]);
 
   return (
     <>
+      {/* NAVBAR */}
       <nav
         className="w-full h-16 px-4 md:px-8 flex items-center justify-between
         bg-[var(--bg-main)] backdrop-blur-md
         border-b border-[var(--border-light)]/10
         sticky top-0 z-50"
       >
-        {/* Left */}
         <div className="flex items-center gap-6">
           <Link
             to="/"
@@ -39,22 +57,18 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Right */}
         <div className="flex items-center gap-4">
-          {/* Desktop Search */}
           <div className="hidden md:block">
             <Search />
           </div>
 
-          {/* Mobile Search Icon */}
           <button
-            onClick={handleOpenSearch}
+            onClick={openDrawer}
             className="md:hidden text-[var(--text-main)]"
           >
             <SearchIcon size={20} />
           </button>
 
-          {/* Cart */}
           {isLogin && (
             <Link
               to="/cart"
@@ -91,21 +105,28 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Search Drawer */}
-      <Drawer
-        anchor="top"
-        open={openSearch}
-        onClose={handleCloseSearch}
-        PaperProps={{
-          sx: {
-            background: "var(--bg-main)",
-            borderBottom: "1px solid var(--border-light)",
-            padding: "20px",
-          },
-        }}
-      >
-        <Search />
-      </Drawer>
+      {/* MOBILE SEARCH DRAWER */}
+      {openSearch && (
+        <div
+          ref={drawerRef}
+          className="fixed inset-0 z-[100] bg-[var(--bg-main)] p-6 md:hidden flex flex-col justify-between"
+        >
+          {/* Search */}
+          <div>
+            <Search onSearch={closeDrawer} />
+          </div>
+
+          {/* Bottom Close Button */}
+          <div className="flex justify-center pb-6">
+            <button
+              onClick={closeDrawer}
+              className="p-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-light)]"
+            >
+              <ChevronUp size={26} className="text-[var(--text-main)]" />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

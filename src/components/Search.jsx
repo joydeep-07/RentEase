@@ -1,56 +1,76 @@
-import { Mic, Search as SearchIcon } from "lucide-react";
+import { ArrowUpRight, Mic, Search as SearchIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 import { data } from "../utils/data";
 import { getSuggestions } from "../utils/searchUtils";
 
-export default function Search() {
+export default function Search({ onSearch }) {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const suggestions = getSuggestions(data, query);
 
-  const handleSearch = (value) => {
-    const q = value || query;
-    if (!q) return;
+  const handleSearch = () => {
+    if (!query.trim()) return;
 
-    navigate(`/products?q=${q}`);
-    setQuery("");
+    navigate(`/products?q=${query}`);
+    if (onSearch) onSearch();
+    setQuery(""); // optional: clear input after search
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    navigate(`/products?q=${suggestion}`);
+    if (onSearch) onSearch();
+    setQuery(""); // closes suggestions + optional clear
   };
 
   return (
-    <div className="relative w-full md:w-xl max-w-xl">
-      {/* SEARCH BAR */}
-      <div className="flex items-center border pr-3 gap-2 bg-[var(--bg-secondary)] border-[var(--border-light)]/50 h-[46px] rounded-full overflow-hidden">
+    <div className="relative w-full max-w-xl">
+      <div
+        className="flex items-center gap-2 px-3 py-2 rounded-full h-11
+        bg-[var(--bg-secondary)] md:w-xl
+        border border-[var(--border-light)]"
+      >
+        <SearchIcon size={18} className="text-[var(--text-secondary)]" />
+
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Search furniture, appliances..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-          className="w-full h-full pl-4 pr-2 outline-none text-sm"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); // prevent any form-like behaviour
+              handleSearch();
+            }
+          }}
+          className="flex-1 bg-transparent outline-none
+          text-[var(--text-main)]"
         />
 
-        <button onClick={() => handleSearch()}>
-          <SearchIcon size={18} />
-        </button>
-
-        <div className="h-6 w-px bg-[var(--border-light)]/50"></div>
-
-        <Mic size={18} />
+        <Mic
+          size={18}
+          className="text-[var(--text-secondary)] cursor-pointer"
+        />
       </div>
 
-      {/* SUGGESTIONS */}
+      {/* Suggestions */}
       {query && suggestions.length > 0 && (
-        <div className="absolute top-full mt-2 w-full bg-[var(--bg-secondary)] border border-[var(--border-light)] rounded-xl shadow-lg z-50">
+        <div
+          className="absolute left-0 top-full mt-2 w-full
+          bg-[var(--bg-main)]
+          border border-[var(--border-light)]/30
+          rounded-md shadow-lg
+          z-[200]"
+        >
           {suggestions.map((item, index) => (
             <div
               key={index}
-              onClick={() => handleSearch(item)}
-              className="px-4 py-2 cursor-pointer hover:bg-[var(--bg-main)] text-sm"
+              className="px-4 py-2 cursor-pointer
+              hover:bg-[var(--bg-secondary)] flex items-center gap-2"
+              onClick={() => handleSuggestionClick(item)}
             >
-              {item}
+            <ArrowUpRight size={15} /> {item}
             </div>
           ))}
         </div>
