@@ -1,4 +1,3 @@
-// src/pages/Products.jsx
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { data } from "../utils/data";
@@ -18,7 +17,7 @@ const Products = () => {
     inStock: false,
   });
 
-  // 1️⃣ Search filtering
+  // Search filtering
   const searchFiltered = query
     ? data.filter(
         (item) =>
@@ -30,13 +29,13 @@ const Products = () => {
       )
     : data;
 
-  // 2️⃣ Dynamic filter options
+  // Dynamic filter options
   const categories = [
     ...new Set(searchFiltered.map((item) => item.category)),
   ].sort();
   const brands = [...new Set(searchFiltered.map((item) => item.brand))].sort();
 
-  // 3️⃣ Apply sidebar filters
+  // Apply sidebar filters
   const filteredProducts = searchFiltered.filter((item) => {
     return (
       item.pricePerDay <= filters.price &&
@@ -47,7 +46,7 @@ const Products = () => {
     );
   });
 
-  // 4️⃣ Get category for suggestion
+  // Get category for suggestion
   const firstCategory =
     filteredProducts.length > 0
       ? filteredProducts[0].category
