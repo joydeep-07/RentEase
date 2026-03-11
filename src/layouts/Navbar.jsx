@@ -93,9 +93,9 @@ const Navbar = () => {
           {!isLogin && (
             <Link
               to="/auth"
-              className="px-4 py-1.5 text-sm rounded-xs
-              bg-[var(--accent-primary)] text-white
-              hover:opacity-90 transition"
+              className="px-7 py-2.5 text-sm rounded-full
+              bg-[var(--accent-blue)] text-white
+              hover:opacity-90 transition border border-[var(--border-light)] uppercase tracking-widest font-medium  "
             >
               Login
             </Link>
