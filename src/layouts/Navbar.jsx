@@ -7,11 +7,14 @@ import { useSelector } from "react-redux";
 import UserDetail from "../ui/UserDetail";
 import SelectCity from "../ui/SelectCity";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
   const [openSearch, setOpenSearch] = useState(false);
   const drawerRef = useRef(null);
+  const navigate = useNavigate();
+
 
   const openDrawer = () => setOpenSearch(true);
 
@@ -91,14 +94,14 @@ const Navbar = () => {
           {isLogin && <UserDetail />}
 
           {!isLogin && (
-            <Link
-              to="/auth"
-              className="px-7 py-2.5 text-sm rounded-full
-              bg-[var(--accent-blue)] text-white
-              hover:opacity-90 transition border border-[var(--border-light)] uppercase tracking-widest font-medium  "
+            <button
+              onClick={() => navigate("/auth")}
+              className=" relative overflow-hidden px-8 sm:px-10 md:px-7 py-3 sm:py-3.5 md:py-3 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group w-full sm:w-auto"
             >
-              Login
-            </Link>
+              <span className="flex items-center uppercase text-sm justify-center gap-2">
+                Login
+              </span>
+            </button>
           )}
 
           <ThemeToggle />
