@@ -17,7 +17,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-heading leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-medium font-main leading-tight">
             Rent what you need{" "}
             <span className="text-[var(--accent-primary)]">
               when you <br /> need it
