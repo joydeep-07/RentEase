@@ -1,8 +1,35 @@
-import { FaRegEye } from "react-icons/fa";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authSlice";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { IoLockClosedOutline, IoMailOutline } from "react-icons/io5";
+import {useNavigate} from 'react-router-dom'
+import { users } from "../utils/users";
 
 const Login = ({ onRegister }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState("");
+
+ const handleLogin = () => {
+   const foundUser = users.find(
+     (u) => u.email === email && u.password === password,
+   );
+
+   if (foundUser) {
+     dispatch(login(foundUser));
+     setError("");
+     navigate("/");
+   } else {
+     setError("Invalid email or password");
+   }
+ };
+
   return (
     <div className="w-full flex items-center justify-center">
       <div
@@ -48,33 +75,41 @@ const Login = ({ onRegister }) => {
           <div className="flex-1 h-px bg-[var(--border-light)]" />
         </div>
 
-        {/* Email Field */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition-[var(--transition-fast)]">
+        {/* Email */}
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)] focus-within:border-[var(--accent-primary)]">
           <IoMailOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type="email"
             placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full bg-transparent outline-none text-sm text-[var(--text-main)] placeholder-[var(--text-muted)]"
           />
         </div>
 
-        {/* Password Field */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition-[var(--transition-fast)]">
+        {/* Password */}
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)]">
           <IoLockClosedOutline className="text-[var(--text-muted)] text-lg" />
           <input
-            type="password"
+            type={showPass ? "text" : "password"}
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full bg-transparent outline-none text-sm text-[var(--text-main)] placeholder-[var(--text-muted)]"
           />
           <button
             type="button"
-            className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+            onClick={() => setShowPass(!showPass)}
+            className="text-[var(--text-muted)]"
           >
-            <FaRegEye />
+            {showPass ? <FaRegEyeSlash /> : <FaRegEye />}
           </button>
         </div>
 
-        {/* Remember Me */}
+        {/* Error */}
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+        {/* Remember */}
         <div className="flex items-center justify-between mt-5 text-sm">
           <label className="flex items-center gap-2 cursor-pointer text-[var(--text-secondary)]">
             <input
@@ -85,9 +120,10 @@ const Login = ({ onRegister }) => {
           </label>
         </div>
 
-        {/* Submit Button */}
+        {/* Login Button */}
         <button
           type="button"
+          onClick={handleLogin}
           className="
             mt-6 h-11 rounded-full 
             bg-[var(--accent-primary)] 
@@ -99,7 +135,7 @@ const Login = ({ onRegister }) => {
           Login
         </button>
 
-        {/* Register link */}
+        {/* Register */}
         <p className="text-sm text-center mt-5 text-[var(--text-secondary)]">
           Don’t have an account?{" "}
           <button
