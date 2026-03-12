@@ -64,7 +64,7 @@ const WhyUs = () => {
               key={index}
               className=" p-4 sm:p-6  rounded-sm  border border-[var(--border-light)] bg-[var(--bg-secondary)] hover:border-[var(--accent-primary)]/30 transition-all duration-300 group flex flex-col "
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-[var(--accent-primary)]/10 text-[var(--accent-primary)] mb-3 sm:mb-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg text-[var(--accent-primary)] mb-3 sm:mb-4">
                 {item.icon}
               </div>
 
