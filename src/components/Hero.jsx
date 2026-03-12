@@ -17,10 +17,10 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-medium font-main leading-tight">
+          <h1 className="text-4xl sm:text-4xl md:text-5xl xl:text-6xl font-medium font-main leading-tight">
             Rent what you need{" "}
             <span className="text-[var(--accent-primary)]">
-              when you <br /> need it
+              when you  need it
             </span>{" "}
             without buying.
           </h1>
