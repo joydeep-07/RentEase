@@ -16,7 +16,7 @@ const Home = () => {
         curveAmount={-310}
         direction="right"
         interactive
-        className="text-5xl"
+        className=" md:text-6xl text-8xl"
       />
       <Testimonials />
     </>
