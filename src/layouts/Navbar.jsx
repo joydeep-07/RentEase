@@ -104,7 +104,7 @@ const Navbar = () => {
             </button>
           )}
 
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
       </nav>
 

@@ -2,27 +2,32 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
+
 import Root from "./layouts/Root";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
 import ColorTest from "./pages/ColorTest";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Profile from "./pages/Profile";
 import SellerDashboard from "./pages/SellerDashboard";
 import Rents from "./pages/Rents";
-import AddItem from "./admin/AddItem";
-import Allitem from "./admin/Allitem";
 import ProductDetails from "./pages/ProductDetails";
 import Products from "./pages/Products";
+
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminProtectedRoute from "./routes/AdminProtectedRoute";
+
+import AddItem from "./admin/AddItem";
+import Allitem from "./admin/Allitem";
+import Admin from "./admin/Admin";
+
 import ScrollToTop from "./utils/ScrollToTop";
 import SmoothScroll from "./utils/SmoothScroll ";
-import Admin from "./admin/Admin";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
 
+  // Apply dark class to html element
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -35,18 +40,21 @@ const App = () => {
     <>
       <SmoothScroll />
       <ScrollToTop />
+
+      {/* Toast Notifications */}
       <Toaster
         position="top-right"
-        // richColors
         expand
-        theme="system"
+        theme={darkMode ? "dark" : "light"}
         visibleToasts={4}
         duration={2000}
       />
+
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
 
+          {/* Public Routes */}
           <Route path="auth" element={<Auth />} />
           <Route path="products" element={<Products />} />
           <Route path="test" element={<ColorTest />} />
