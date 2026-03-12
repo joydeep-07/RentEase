@@ -1,9 +1,9 @@
 import React from 'react'
-import Hero from '../components/Hero';
-import Testimonials from '../components/Testimonials';
+import Hero from '../ui/Hero';
+import Testimonials from '../ui/Testimonials';
 import CurvedLoop from '../components/CurvedLoop';
-import Categories from '../components/Categories';
-import WhyUs from '../components/WhyUs';
+import Categories from '../ui/Categories';
+import WhyUs from '../ui/WhyUs';
 
 const Home = () => {
     
