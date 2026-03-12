@@ -29,7 +29,7 @@ const AdminNav = () => {
           <Heading
             small="Seller Panel"
             heading={
-              <h1 className="text-3xl md:text-4xl font-heading text-[var(--text-main)]">
+              <h1 className="text-3xl md:text-4xl font-main text-[var(--text-main)]">
                 Become a
                 <span className="text-[var(--accent-secondary)]"> Seller</span>
               </h1>
