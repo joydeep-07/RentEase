@@ -92,7 +92,7 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
- font-family: Heading, sans-serif ;
+ font-family: normal, sans-serif ;
  font-weight: 300;
 }
 
@@ -101,8 +101,14 @@ button {
 }
 
 @font-face {
-  font-family: "Heading";
+  font-family: "normal";
   src: url("./assets/fonts/normal.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Heading";
+  src: url("./assets/fonts/Marcellus.ttf") format("truetype");
   font-display: swap;
 }
 

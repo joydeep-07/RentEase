@@ -8,18 +8,24 @@ import {
 const Register = ({ onLogin }) => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-80 md:w-96 flex flex-col bg-[var(--bg-main)] p-6 rounded-xl border border-[var(--border-light)]/50">
+      <div
+        className=" w-full flex flex-col
+          bg-[var(--bg-secondary)]30 
+          p-6 rounded-sm
+          border border-[var(--border-light)]/50"
+      >
         <h2 className="text-3xl font-medium text-[var(--text-main)] font-heading">
           Sign <span className="text-[var(--accent-primary)]">Up</span>
         </h2>
 
         <p className="text-sm text-[var(--text-secondary)] mt-2">
-          Don't have an account? <span className="text-[var(--accent-secondary)] ">Create Now</span>
+          Don't have an account?{" "}
+          <span className="text-[var(--accent-secondary)] ">Create Now</span>
         </p>
 
         {/* Name Input */}
         <div className="flex flex-col gap-3 mt-6">
-          <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition">
+          <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)]/40  transition">
             <IoPersonOutline className="text-[var(--text-muted)] text-lg" />
             <input
               type="text"
@@ -30,7 +36,7 @@ const Register = ({ onLogin }) => {
         </div>
 
         {/* Email Input */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition">
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)]/40  transition">
           <IoMailOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type="email"
@@ -40,7 +46,7 @@ const Register = ({ onLogin }) => {
         </div>
 
         {/* Password Input */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition">
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)]/40  transition">
           <IoLockClosedOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type="password"
@@ -53,7 +59,7 @@ const Register = ({ onLogin }) => {
         </div>
 
         {/* Confirm Password Input */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)] transition">
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)]/40  transition">
           <IoLockClosedOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type="password"

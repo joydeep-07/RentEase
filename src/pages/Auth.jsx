@@ -33,14 +33,14 @@ export default function Auth() {
   };
 
   return (
-    <div className="pt-15 flex-col md:pt-0 pb-15 md:pb-0 md:min-h-screen flex items-center justify-center bg-[var(--bg-main)]">
-      <div className="flex w-full max-w-6xl overflow-hidden px-4">
+    <div className="pt-5 flex-col md:pt-0 pb-15 md:pb-0 md:min-h-[80vh] flex items-center justify-center bg-[var(--bg-main)]">
+      <div className="flex w-full max-w-7xl overflow-hidden px-4">
         {/* LEFT PANEL — only text changed */}
-        <div className="w-1/2 h-[70vh] hidden md:flex relative flex-col justify-start">
+        <div className="w-1/2 hidden md:flex relative flex-col justify-start">
           {/* Decorative SVG remains unchanged */}
           <svg
-            className="hidden md:block absolute -bottom-90 pointer-events-none opacity-10 text-[var(--text-main)]"
-            viewBox="0 0 90 110"
+            className="hidden md:block absolute -bottom-90 right-0 translate-x-10 pointer-events-none opacity-10 text-[var(--text-main)]"
+            viewBox="0 0 120 110"
           >
             <path
               d="M16.141 0C13.4854 0 10.9387 1.04871 9.06091 2.91543L2.93268 9.00761C1.05492 10.8743 0 13.4061 0 16.0461C0 21.5435 4.48289 26 10.0128 26C12.6684 26 15.2152 24.9512 17.0929 23.0845L21.3319 18.8705L33.6827 6.59239C34.5795 5.70086 35.7958 5.2 37.0641 5.2C39.1874 5.2 40.9876 6.57576 41.6117 8.47953L45.5096 4.60457C43.7314 1.83589 40.6134 0 37.0641 0C34.4085 0 31.8617 1.04871 29.984 2.91543L13.3943 19.4076C12.4974 20.2992 11.2811 20.8 10.0128 20.8C7.37176 20.8 5.23077 18.6716 5.23077 16.0461C5.23077 14.7852 5.73459 13.5761 6.63139 12.6845L12.7596 6.59239C13.6564 5.70086 14.8727 5.2 16.141 5.2C18.2645 5.2 20.0645 6.57582 20.6887 8.47965L24.5866 4.60466C22.8084 1.83595 19.6904 0 16.141 0Z"
@@ -53,7 +53,7 @@ export default function Auth() {
           </svg>
 
           <div className="pb-15 max-w-md">
-            <h2 className="text-4xl font-medium font-heading text-[var(--text-secondary)]/90 leading-tight">
+            <h2 className="text-4xl font-medium font-heading text-[var(--text-secondary)]/90 mb-2 leading-tight">
               Rent{" "}
               <span className="text-[var(--accent-primary)]/90">Anything</span>
               <br />
@@ -61,7 +61,7 @@ export default function Auth() {
             </h2>
             <p className="text-sm pb-10 max-w-md text-[var(--text-secondary)]/80 leading-relaxed">
               Rent cameras, tools, drones, fashion, electronics, party gear and
-              more — hassle-free, affordable, and delivered to your doorstep.
+              more hassle-free, affordable, and delivered to your doorstep.
             </p>
             <p className="text-sm pb-10 max-w-md text-[var(--text-secondary)]/80 leading-relaxed">
               Own less. Rent more. Save money. Live better.
@@ -131,11 +131,6 @@ export default function Auth() {
           </AnimatePresence>
         </div>
       </div>
-
-      <h1 className="max-w-xl text-center text-sm text-[var(--text-secondary)]/50 ">
-        Rent anything you need like cameras, gadgets, tools, fashion, sports gear
-        and more. Affordable, convenient, and completely hassle-free.
-      </h1>
     </div>
   );
 }

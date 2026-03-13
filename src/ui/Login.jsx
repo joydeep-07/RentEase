@@ -34,9 +34,9 @@ const Login = ({ onRegister }) => {
     <div className="w-full flex items-center justify-center">
       <div
         className="
-          w-80 md:w-96 flex flex-col
-          bg-[var(--bg-main)] 
-          p-6 rounded-xl 
+          w-full flex flex-col
+          bg-[var(--bg-secondary)]/30 
+          p-6 rounded-sm
           border border-[var(--border-light)]/50
         "
       >
@@ -54,11 +54,10 @@ const Login = ({ onRegister }) => {
           className="
             w-full mt-6 h-11 rounded-full
             flex items-center justify-center gap-2
-            bg-[var(--bg-main)]
-            border border-[var(--border-light)]
+            bg-[var(--bg-secondary)]/30 
+            border border-[var(--border-light)]/40
             hover:bg-[var(--bg-tertiary)]/50
-            transition-[var(--transition-fast)]
-          "
+            transition-[var(--transition-fast)] "
         >
           <FcGoogle className="text-xl" />
           <span className="text-sm font-medium text-[var(--text-main)]">
@@ -76,7 +75,7 @@ const Login = ({ onRegister }) => {
         </div>
 
         {/* Email */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)] focus-within:border-[var(--accent-primary)]">
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full border border-[var(--border-light)]/40 ">
           <IoMailOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type="email"
@@ -88,7 +87,7 @@ const Login = ({ onRegister }) => {
         </div>
 
         {/* Password */}
-        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)] focus-within:border-[var(--accent-primary)]">
+        <div className="flex items-center gap-2 h-11 px-4 rounded-full mt-4 border border-[var(--border-light)]/40 ">
           <IoLockClosedOutline className="text-[var(--text-muted)] text-lg" />
           <input
             type={showPass ? "text" : "password"}
