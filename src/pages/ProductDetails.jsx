@@ -2,10 +2,25 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { data } from "../utils/data";
 import { Star } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
+import { toast } from "sonner";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const product = data.find((item) => item.id === Number(id));
+  const dispatch = useDispatch();
+  const { isLogin } = useSelector((state) => state.auth);
+
+  const handleAddToCart = () => {
+    if (!isLogin) {
+      toast.error("Please login to add items to cart");
+      return;
+    }
+
+    dispatch(addToCart(product));
+    toast.success("Item added to cart");
+  };
 
   if (!product) return <h1 className="text-center mt-20">Product Not Found</h1>;
 
@@ -75,13 +90,16 @@ const ProductDetails = () => {
           <ul className="list-disc ml-4 mt-2 text-sm text-[var(--text-secondary)] space-y-1">
             <li>Brand: {product.brand}</li>
             <li>Condition: {product.condition}</li>
-            <li className="text-justify" >{product.description}</li>
+            <li className="text-justify">{product.description}</li>
           </ul>
 
           {/* Buttons */}
           <div className="flex items-center mt-8 md:mt-10 gap-4">
-            <button className="w-full py-3.5 font-medium bg-[var(--accent-primary)] text-white hover:opacity-90 transition rounded">
-              Rent Now
+            <button
+              onClick={handleAddToCart}
+              className="w-full py-3.5 font-medium bg-[var(--accent-primary)] text-white hover:opacity-90 transition rounded"
+            >
+              Add to cart
             </button>
           </div>
         </div>

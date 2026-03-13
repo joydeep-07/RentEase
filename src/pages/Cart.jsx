@@ -1,56 +1,14 @@
 import { ChevronLeft, Trash } from "lucide-react";
 import React, { useState } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart } from "../redux/slices/cartSlice";
+
 const Cart = () => {
   const [showAddress, setShowAddress] = useState(false);
-
-  const products = [
-    {
-      name: "Running Shoes",
-      description: [
-        "Lightweight and comfortable",
-        "Breathable mesh upper",
-        "Ideal for jogging and casual wear",
-      ],
-      offerPrice: 250,
-      price: 200,
-      quantity: 1,
-      size: 42,
-      image:
-        "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage.png",
-      category: "Footwear",
-    },
-    {
-      name: "Running Shoes",
-      description: [
-        "Lightweight and comfortable",
-        "Breathable mesh upper",
-        "Ideal for jogging and casual wear",
-      ],
-      offerPrice: 250,
-      price: 200,
-      quantity: 1,
-      size: 42,
-      image:
-        "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage2.png",
-      category: "Footwear",
-    },
-    {
-      name: "Running Shoes",
-      description: [
-        "Lightweight and comfortable",
-        "Breathable mesh upper",
-        "Ideal for jogging and casual wear",
-      ],
-      offerPrice: 250,
-      price: 200,
-      quantity: 1,
-      size: 42,
-      image:
-        "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage3.png",
-      category: "Footwear",
-    },
-  ];
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cart);
+  const products = cartItems;
 
   return (
     <div className="flex flex-col lg:flex-row py-10 md:py-16 max-w-7xl px-4 md:px-6 mx-auto text-[var(--text-main)] gap-10">
@@ -104,7 +62,10 @@ const Cart = () => {
             </p>
 
             {/* ACTION */}
-            <button className="cursor-pointer mx-auto text-[var(--sale)]">
+            <button
+              onClick={() => dispatch(removeFromCart(product.id))}
+              className="cursor-pointer mx-auto text-[var(--sale)]"
+            >
               <Trash size={18} />
             </button>
           </div>
@@ -131,8 +92,8 @@ const Cart = () => {
           <div className="relative flex justify-between items-start mt-2">
             <p className="text-[var(--text-secondary)]">
               <p>
-               Vill - Alladi II, Post - Basudevpur Jemari, Asansol, Paschim Bardhaman,
-                West Bengal, India, 713335.
+                Vill - Alladi II, Post - Basudevpur Jemari, Asansol, Paschim
+                Bardhaman, West Bengal, India, 713335.
               </p>
             </p>
 
@@ -170,7 +131,7 @@ const Cart = () => {
         </div>
 
         <button className="w-full py-3 mt-6 cursor-pointer bg-[var(--accent-primary)] text-white font-medium hover:opacity-90 transition rounded">
-         Proceed to payment
+          Proceed to payment
         </button>
       </div>
     </div>
