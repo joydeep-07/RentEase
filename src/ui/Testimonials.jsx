@@ -9,7 +9,7 @@ const Testimonials = () => {
 
   return (
     <>
-      <section className="bg-[var(--bg-main)] py-16 px-4 md:px-8 flex items-center justify-center">
+      <section className="py-16 px-4 md:px-8 flex items-center justify-center">
         <div className="max-w-8xl md:px-15 mx-auto">
           <div className="mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-medium font-main leading-tight mb-2">
@@ -27,7 +27,7 @@ const Testimonials = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                className={`bg-[var(--bg-card)] border border-[var(--border-light)] rounded-sm p-6 hover:border-[var(--accent-primary)]/50 transition-colors
+                className={`bg-[var(--bg-card)]/50 border border-[var(--border-light)]/50 rounded-sm p-6 hover:border-[var(--accent-primary)]/30 transition-colors
                 ${
                   index === 0
                     ? "md:col-span-2"
