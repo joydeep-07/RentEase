@@ -7,9 +7,15 @@ import EmptyCart from "../ui/EmptyCart";
 import { useNavigate } from "react-router-dom";
 import SelectTenure from "../components/SelectTenure";
 
+import dayjs from "dayjs";
+
 const Cart = () => {
   const navigate = useNavigate();
   const [showAddress, setShowAddress] = useState(false);
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const products = cartItems;
@@ -21,6 +27,28 @@ const Cart = () => {
   const openProduct = (id) => {
     navigate(`/product-detail/${id}`);
   };
+
+  /* ---------------- RENT CALCULATION ---------------- */
+
+  let totalDays = 0;
+
+  if (startDate && endDate) {
+    totalDays = endDate.diff(startDate, "day") + 1;
+  }
+
+  const totalRent = products.reduce((acc, item) => {
+    return acc + item.pricePerDay * totalDays;
+  }, 0);
+
+  const totalDeposit = products.reduce((acc, item) => {
+    return acc + item.securityDeposit;
+  }, 0);
+
+  const tax = (totalRent * 2) / 100;
+
+  const grandTotal = totalRent + totalDeposit + tax;
+
+  /* -------------------------------------------------- */
 
   return products.length === 0 ? (
     <EmptyCart />
@@ -49,7 +77,6 @@ const Cart = () => {
           >
             {/* PRODUCT INFO */}
             <div className="flex items-start gap-4 md:gap-6">
-              {/* Product Image */}
               <div
                 onClick={() => openProduct(product.id)}
                 className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center 
@@ -63,7 +90,6 @@ const Cart = () => {
                 />
               </div>
 
-              {/* Product Info */}
               <div className="flex flex-col gap-1">
                 <p className="font-semibold text-[var(--text-main)] leading-tight">
                   {product.productName}
@@ -73,14 +99,13 @@ const Cart = () => {
                   {product.brand}
                 </p>
 
-                {/* Deposit */}
                 <span className="text-xs font-medium text-[var(--text-muted)]/70 ">
                   Security Deposit: ₹{product.securityDeposit}
                 </span>
               </div>
             </div>
 
-            {/* SUBTOTAL */}
+            {/* RENT */}
             <p className="text-center text-[var(--text-main)]">
               ₹{product.pricePerDay} <span>/ day</span>
             </p>
@@ -94,6 +119,7 @@ const Cart = () => {
             </button>
           </div>
         ))}
+
         <button
           onClick={goBack}
           className="group cursor-pointer flex items-center mt-8 gap-2 text-[var(--accent-blue)] font-medium"
@@ -118,10 +144,8 @@ const Cart = () => {
 
           <div className="relative flex justify-between items-start mt-2">
             <p className="text-[var(--text-secondary)]">
-              <p>
-                Vill - Alladi II, Post - Basudevpur Jemari, Asansol, Paschim
-                Bardhaman, West Bengal, India, 713335.
-              </p>
+              Vill - Alladi II, Post - Basudevpur Jemari, Asansol, Paschim
+              Bardhaman, West Bengal, India, 713335.
             </p>
 
             <button
@@ -135,12 +159,22 @@ const Cart = () => {
 
         <hr className="border-[var(--border-light)] mb-4" />
 
-        <SelectTenure />
+        <SelectTenure
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
 
         <div className="text-[var(--text-secondary)] mt-4 space-y-2">
           <p className="flex justify-between">
-            <span>Price</span>
-            <span>$20</span>
+            <span>Price ({totalDays} days)</span>
+            <span>₹{totalRent}</span>
+          </p>
+
+          <p className="flex justify-between">
+            <span>Security Deposit</span>
+            <span>₹{totalDeposit}</span>
           </p>
 
           <p className="flex justify-between">
@@ -150,12 +184,12 @@ const Cart = () => {
 
           <p className="flex justify-between">
             <span>Tax (2%)</span>
-            <span>$20</span>
+            <span>₹{tax.toFixed(2)}</span>
           </p>
 
           <p className="flex justify-between text-lg font-medium mt-3 text-[var(--text-main)]">
             <span>Total Amount:</span>
-            <span>$20</span>
+            <span>₹{grandTotal.toFixed(2)}</span>
           </p>
         </div>
 
