@@ -26,6 +26,7 @@ import Admin from "./admin/Admin";
 
 import ScrollToTop from "./utils/ScrollToTop";
 import SmoothScroll from "./utils/SmoothScroll ";
+import Payment from "./pages/Payment";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -100,6 +101,15 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="payment"
+            element={
+              <ProtectedRoute>
+                <Payment />
               </ProtectedRoute>
             }
           />
