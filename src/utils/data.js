@@ -1290,7 +1290,7 @@ export const data = [
     image: wm3,
     pricePerDay: 160,
     securityDeposit: 2200,
-    totalStock: 1,
+    totalStock: 10,
     availableFrom: "2026-03-01",
     availableTill: null,
     featured: false,
