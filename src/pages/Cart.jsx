@@ -18,6 +18,10 @@ const Cart = () => {
     navigate(-1);
   };
 
+  const openProduct = (id) => {
+    navigate(`/product-detail/${id}`);
+  };
+
   return products.length === 0 ? (
     <EmptyCart />
   ) : (
@@ -34,7 +38,7 @@ const Cart = () => {
         {/* HEADER */}
         <div className="hidden md:grid grid-cols-[2fr_1fr_1fr] text-[var(--accent-secondary)] text-base font-medium pb-3">
           <p className="text-left">Product Details</p>
-          <p className="text-center">Subtotal</p>
+          <p className="text-center">Rent</p>
           <p className="text-center">Action</p>
         </div>
 
@@ -44,31 +48,41 @@ const Cart = () => {
             className="grid grid-cols-[2fr_1fr_auto] md:grid-cols-[2fr_1fr_1fr] gap-4 md:gap-0 text-[var(--text-secondary)] items-start text-sm md:text-base font-medium pt-4 border-b border-[var(--border-light)] pb-4"
           >
             {/* PRODUCT INFO */}
-            <div className="flex items-start gap-3 md:gap-6">
-              <div className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center border border-[var(--border-light)] rounded overflow-hidden bg-[var(--bg-secondary)]">
+            <div className="flex items-start gap-4 md:gap-6">
+              {/* Product Image */}
+              <div
+                onClick={() => openProduct(product.id)}
+                className="cursor-pointer w-20 h-20 md:w-24 md:h-24 flex items-center justify-center 
+  border border-[var(--border-light)] rounded-lg overflow-hidden 
+  bg-[var(--bg-secondary)] "
+              >
                 <img
-                  className="w-full h-full object-cover"
+                  className="w-full h-full hover:scale-103 transition duration-300 ease-in-out object-cover"
                   src={product.image}
-                  alt={product.name}
+                  alt={product.productName}
                 />
               </div>
 
-              <div>
-                <p className="font-semibold text-[var(--text-main)]">
-                  {product.name}
+              {/* Product Info */}
+              <div className="flex flex-col gap-1">
+                <p className="font-semibold text-[var(--text-main)] leading-tight">
+                  {product.productName}
                 </p>
 
-                <div className="font-normal text-[var(--text-secondary)]">
-                  <p>
-                    Size: <span>{product.size || "N/A"}</span>
-                  </p>
-                </div>
+                <p className="text-sm text-[var(--text-secondary)]">
+                  {product.brand}
+                </p>
+
+                {/* Deposit */}
+                <span className="text-xs font-medium text-[var(--text-muted)]/70 ">
+                  Security Deposit: ₹{product.securityDeposit}
+                </span>
               </div>
             </div>
 
             {/* SUBTOTAL */}
             <p className="text-center text-[var(--text-main)]">
-              ${product.offerPrice * product.quantity}
+              ₹{product.pricePerDay} <span>/ day</span>
             </p>
 
             {/* ACTION */}
@@ -121,7 +135,7 @@ const Cart = () => {
 
         <hr className="border-[var(--border-light)] mb-4" />
 
-        <SelectTenure/>
+        <SelectTenure />
 
         <div className="text-[var(--text-secondary)] mt-4 space-y-2">
           <p className="flex justify-between">
