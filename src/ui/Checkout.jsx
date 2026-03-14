@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { ShieldCheck, Lock, ChevronRight } from "lucide-react";
 import { useSelector } from "react-redux";
 import EmptyCart from "./EmptyCart";
-
+import { Box, TextField, Typography } from "@mui/material";
+import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { InputAdornment } from "@mui/material";
+import { CreditCard } from "lucide-react";
 const Checkout = () => {
   const [payment, setPayment] = useState("card");
   const [startDate, setStartDate] = useState("");
@@ -13,6 +19,37 @@ const Checkout = () => {
   if (!product) {
     return <EmptyCart />;
   }
+
+
+  const inputStyles = {
+    "& .MuiInputLabel-root": {
+      color: "var(--text-secondary)",
+    },
+
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: "var(--accent-secondary)",
+    },
+
+    "& .MuiOutlinedInput-root": {
+      color: "var(--text-main)",
+
+      "& fieldset": {
+        borderColor: "var(--border-light)",
+      },
+
+      "&:hover fieldset": {
+        borderColor: "var(--accent-secondary)",
+      },
+
+      "&.Mui-focused fieldset": {
+        borderColor: "var(--accent-secondary)",
+      },
+    },
+
+    "& input": {
+      color: "var(--text-main)",
+    },
+  };
 
   /* ---------------- RENT CALCULATIONS ---------------- */
 
@@ -41,7 +78,7 @@ const Checkout = () => {
           <span className="bg-[var(--text-main)] text-[var(--bg-main)] w-6 h-6 flex items-center justify-center rounded-full">
             1
           </span>
-          Cart
+          Product
           <span>
             <ChevronRight size={16} className="text-[var(--text-secondary)]" />
           </span>
@@ -61,70 +98,83 @@ const Checkout = () => {
         {/* LEFT SECTION */}
         <div className="lg:col-span-2 space-y-6">
           {/* Shipping */}
-          <div className="bg-[var(--bg-card)]/50 p-6 rounded-lg border border-[var(--border-light)]/50 space-y-4">
-            <h3 className="text-sm uppercase text-[var(--text-muted)] mb-8">
-              shipping information
-            </h3>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Box className="border border-[var(--border-light)]/30 p-6 rounded-sm bg-[var(--bg-secondary)]/50 flex flex-col gap-5">
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  color: "var(--text-secondary)",
+                }}
+              >
+                Shipping Information
+              </Typography>
 
-            {/* START DATE */}
-            <div>
-              <input
-                type="date"
-                value={startDate}
-                min={minStartDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] outline-none transition-all focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
+              {/* DELIVERY DATE */}
 
-              <p className="text-xs text-[var(--text-muted)] mt-1">
-                Available from:{" "}
-                {new Date(product.availableFrom).toLocaleDateString("en-IN")}
-              </p>
-            </div>
+              <div className="flex gap-4">
+                <DatePicker
+                  label="Delivery Start Date"
+                  value={startDate ? dayjs(startDate) : null}
+                  minDate={dayjs(minStartDate)}
+                  onChange={(newValue) => {
+                    setStartDate(newValue?.format("YYYY-MM-DD"));
+                  }}
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      sx: inputStyles,
+                    },
+                  }}
+                />
 
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                placeholder="First Name"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-              <input
-                placeholder="Last Name"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-            </div>
+                {/* PHONE */}
 
-            <input
-              placeholder="Address"
-              className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-            />
+                <TextField
+                  label="Phone Number"
+                  type="tel"
+                  fullWidth
+                  sx={inputStyles}
+                />
+              </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                placeholder="City"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-              <input
-                placeholder="ZIP Code"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-            </div>
+              {/* NAME */}
 
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                placeholder="State"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-              <input
-                placeholder="Country"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-              />
-            </div>
+              <div className="flex gap-5 flex-col md:flex-row">
+                <TextField label="First Name" fullWidth sx={inputStyles} />
+                <TextField label="Last Name" fullWidth sx={inputStyles} />
+              </div>
 
-            <input
-              placeholder="Phone Number"
-              className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-            />
-          </div>
+              {/* ADDRESS */}
+
+              <TextField label="Address" fullWidth sx={inputStyles} />
+
+              {/* CITY + ZIP */}
+
+              <div className="flex gap-5 flex-col md:flex-row">
+                <TextField label="City" fullWidth sx={inputStyles} />
+                <TextField
+                  label="ZIP Code"
+                  type="number"
+                  fullWidth
+                  sx={inputStyles}
+                />
+              </div>
+
+              {/* STATE + COUNTRY */}
+
+              <div className="flex gap-5 flex-col md:flex-row">
+                <TextField label="State" fullWidth sx={inputStyles} />
+                <TextField
+                  label="Country"
+                  defaultValue="India"
+                  fullWidth
+                  sx={inputStyles}
+                />
+              </div>
+            </Box>
+          </LocalizationProvider>
 
           {/* PAYMENT */}
           <div className="bg-[var(--bg-card)]/50 p-6 rounded-lg border border-[var(--border-light)]/50 space-y-4">
@@ -158,32 +208,49 @@ const Checkout = () => {
             ))}
 
             {payment === "card" && (
-              <>
-                <input
-                  type="text"
-                  placeholder="Card Number"
-                  className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] placeholder:text-[var(--text-secondary)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
+              <Box className="flex flex-col gap-5">
+                {/* CARD NUMBER */}
+
+                <TextField
+                  label="Card Number"
+                  fullWidth
+                  sx={inputStyles}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <CreditCard size={18} />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <input
-                    type="text"
-                    placeholder="MM/YY"
-                    className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
+                {/* EXPIRY + CVC */}
+
+                <div className="flex gap-5 flex-col md:flex-row">
+                  <TextField
+                    label="Expiry Date (MM/YY)"
+                    fullWidth
+                    sx={inputStyles}
                   />
-                  <input
-                    type="text"
-                    placeholder="CVC"
-                    className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
+
+                  <TextField
+                    label="CVC"
+                    fullWidth
+                    sx={inputStyles}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock size={16} />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
 
-                <input
-                  type="text"
-                  placeholder="Name on Card"
-                  className="w-full px-4 py-2.5 rounded-md border border-[var(--border-light)]/50 bg-[var(--bg-secondary)] text-[var(--text-main)] outline-none focus:border-[var(--accent-primary)] focus:ring-2 focus:ring-[var(--accent-primary)]/20"
-                />
-              </>
+                {/* NAME ON CARD */}
+
+                <TextField label="Name on Card" fullWidth sx={inputStyles} />
+              </Box>
             )}
           </div>
         </div>
@@ -212,7 +279,6 @@ const Checkout = () => {
                 <p className="text-sm text-[var(--text-muted)]">
                   Duration: {duration} month{duration > 1 && "s"}
                 </p>
-               
               </div>
 
               <p className="font-semibold text-[var(--text-main)]">

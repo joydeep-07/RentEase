@@ -12,7 +12,7 @@ const Testimonials = () => {
       <section className="py-16 px-4 md:px-8 flex items-center justify-center">
         <div className="max-w-8xl md:px-15 mx-auto">
           <div className="mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-medium font-main leading-tight mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-medium font-fuzzy leading-tight mb-2">
               What people{" "}
               <span className="text-[var(--accent-primary)] ">Say</span>
             </h1>

@@ -42,7 +42,7 @@ const WhyUs = () => {
             Why Chose RentEase ?
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium font-main leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium font-fuzzy leading-tight">
             Renting should be{" "}
             <span className="text-[var(--accent-primary)]">
               simple, flexible

@@ -73,7 +73,7 @@ const Categories = () => {
     <section className="w-full px-4 sm:px-6 lg:px-8 md:pt-16 pt-4 pb-10">
       <div className="max-w-8xl md:px-15 mx-auto flex flex-col gap-8">
         {/* Heading */}
-        <h2 className="text-3xl sm:text-3xl md:text-4xl xl:text-5xl font-medium font-main leading-tight">
+        <h2 className="text-3xl sm:text-3xl md:text-4xl xl:text-5xl font-medium font-fuzzy leading-tight">
           Check out all our{" "}
           <span className="text-[var(--accent-primary)]">categories</span>
         </h2>
