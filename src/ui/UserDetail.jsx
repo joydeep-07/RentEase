@@ -45,7 +45,6 @@ const UserDetail = () => {
     setOpen(false);
   };
 
-  // dropdown animation
   useEffect(() => {
     if (!dropdownRef.current) return;
 
@@ -70,7 +69,6 @@ const UserDetail = () => {
     }
   }, [open]);
 
-  // close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -89,13 +87,14 @@ const UserDetail = () => {
   return (
     <div ref={containerRef} className="relative">
       {/* Profile Button */}
+     
       <button
         onClick={toggleDropdown}
-        className="cursor-pointer border border-[var(--border-light)]/40 
-        bg-[var(--bg-tertiary)]/40 backdrop-blur-md 
-        p-2 rounded-full"
+        className=" relative overflow-hidden px-8 sm:px-10 md:px-7 py-3 sm:py-3.5 md:py-3 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group w-full sm:w-auto"
       >
-        <User size={18} />
+        <span className="flex items-center uppercase text-xs justify-center gap-2">
+         Hi, {user?.firstName}
+        </span>
       </button>
 
       {/* Dropdown */}
