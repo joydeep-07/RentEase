@@ -11,7 +11,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import ColorTest from "./pages/ColorTest";
 import Profile from "./pages/Profile";
-import SellerDashboard from "./pages/SellerDashboard";
+import SellerDashboard from "./admin/SellerDashboard";
 import Rents from "./pages/Rents";
 import ProductDetails from "./pages/ProductDetails";
 import Products from "./pages/Products";

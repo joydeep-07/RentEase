@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "../components/Heading";
 import { Link } from "react-router-dom";
 import { Bell, CopyPlus, LayoutDashboard } from "lucide-react";
+import AdminLogout from "./AdminLogout";
 
 const links = [
   {
@@ -52,6 +53,7 @@ const AdminNav = () => {
                 </Link>
               );
             })}
+            <AdminLogout/>
           </div>
         </nav>
       </div>
