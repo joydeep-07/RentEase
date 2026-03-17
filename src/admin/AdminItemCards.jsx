@@ -139,8 +139,7 @@ const AdminItemCards = ({ items = [], limit }) => {
             border border-[var(--border-light)]
             bg-[var(--bg-secondary)]
             shadow-md transition-all duration-300 hover:shadow-xl"
-            onClick={() =>
-              !item.isOutOfStock && navigate(`/product-detail/${item.id}`)
+            onClick={() => navigate(`/admin/product-detail/${item.id}`)
             }
           >
             {/* OUT OF STOCK BADGE */}

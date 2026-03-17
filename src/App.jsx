@@ -26,6 +26,7 @@ import Admin from "./admin/Admin";
 import ScrollToTop from "./utils/ScrollToTop";
 import SmoothScroll from "./utils/SmoothScroll ";
 import Payment from "./pages/Payment";
+import AdminProductDetail from "./admin/AdminProductDetail";
 
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
@@ -111,6 +112,15 @@ const App = () => {
             element={
               <AdminProtectedRoute>
                 <SellerDashboard />
+              </AdminProtectedRoute>
+            }
+          />
+
+          <Route
+            path="admin/product-detail/:id"
+            element={
+              <AdminProtectedRoute>
+                <AdminProductDetail />
               </AdminProtectedRoute>
             }
           />
