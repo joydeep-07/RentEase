@@ -15,9 +15,11 @@ const AdminLogout = () => {
   return (
     <button
       onClick={handleLogout}
-      className="px-4 py-2 rounded-sm text-sm font-medium bg-[var(--accent-primary)] text-white hover:opacity-90 transition"
+      className=" relative overflow-hidden px-8 sm:px-10 md:px-7 py-3 sm:py-3.5 md:py-3 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--sale)] hover:bg-[var(--sale)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--sale)]/20 shadow-sm transition-all duration-500 ease-out group w-full sm:w-auto"
     >
-      Logout
+      <span className="flex items-center uppercase text-sm justify-center gap-2">
+       Logout
+      </span>
     </button>
   );
 };

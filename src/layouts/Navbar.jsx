@@ -2,19 +2,20 @@ import React, { useState, useRef, useEffect } from "react";
 import ThemeToggle from "../components/ThemeToggle";
 import Search from "../components/Search";
 import { ShoppingCart, Search as SearchIcon, ChevronUp } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserDetail from "../ui/UserDetail";
 import SelectCity from "../ui/SelectCity";
 import gsap from "gsap";
-import { useNavigate } from "react-router-dom";
+import AdminDetail from "../admin/AdminDetail";
 
 const Navbar = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
+  const isAdmin = useSelector((state) => state.admin.isAdminAuthenticated);
+
   const [openSearch, setOpenSearch] = useState(false);
   const drawerRef = useRef(null);
   const navigate = useNavigate();
-
 
   const openDrawer = () => setOpenSearch(true);
 
@@ -46,6 +47,7 @@ const Navbar = () => {
         border-b border-[var(--border-light)]/10
         sticky top-0 z-50"
       >
+        {/* LEFT */}
         <div className="flex items-center gap-6">
           <Link
             to="/"
@@ -60,6 +62,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* RIGHT */}
         <div className="flex items-center gap-4">
           <div className="hidden md:block">
             <Search />
@@ -72,13 +75,17 @@ const Navbar = () => {
             <SearchIcon size={16} />
           </button>
 
+          {/* ✅ ADMIN */}
+          {isAdmin && <AdminDetail />}
 
-          {isLogin && <UserDetail />}
+          {/* ✅ USER */}
+          {isLogin && !isAdmin && <UserDetail />}
 
-          {!isLogin && (
+          {/* ✅ LOGIN BUTTON */}
+          {!isLogin && !isAdmin && (
             <button
               onClick={() => navigate("/auth")}
-              className=" relative overflow-hidden px-8 sm:px-10 md:px-7 py-3 sm:py-3.5 md:py-3 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group w-full sm:w-auto"
+              className="relative overflow-hidden px-8 sm:px-10 md:px-7 py-3 sm:py-3.5 md:py-3 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group w-full sm:w-auto"
             >
               <span className="flex items-center uppercase text-sm justify-center gap-2">
                 Login
@@ -97,11 +104,11 @@ const Navbar = () => {
           className="fixed inset-0 z-[100] bg-[var(--bg-main)] p-6 md:hidden flex flex-col justify-between"
         >
           {/* Search */}
-          <div className="">
+          <div>
             <Search onSearch={closeDrawer} />
           </div>
 
-          {/* Bottom Close Button */}
+          {/* Close Button */}
           <div className="flex justify-center pb-6">
             <button
               onClick={closeDrawer}

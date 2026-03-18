@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AdminNav from "./AdminNav";
 
 import {
   Box,
@@ -18,6 +17,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import dayjs from "dayjs";
+import Heading from "../components/Heading";
 
 const categories = [
   "Furniture",
@@ -110,10 +110,17 @@ const AddItem = () => {
   };
 
   return (
-    <div>
-      <AdminNav />
+    <div className="max-w-7xl mx-auto py-15">
+      <Heading
+        small="Admin Panel"
+        heading={
+          <h1 className="text-3xl md:text-4xl font-heading text-[var(--text-main)] leading-tight">
+            Add new <span className="text-[var(--accent-secondary)]">Product</span>
+          </h1>
+        }
+      />
 
-      <div className="max-w-7xl mx-auto py-20">
+      <div className="mt-10">
         <div className="flex gap-12 items-start">
           {/* FORM SECTION */}
 
