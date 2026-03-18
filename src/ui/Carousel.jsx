@@ -17,9 +17,9 @@ const Carousel = () => {
   const getVisible = () => {
     const total = images.length;
     return [
-      images[(index - 1 + total) % total],
-      images[index],
-      images[(index + 1) % total],
+      images[(index - 1 + total) % total], // left
+      images[index], // center
+      images[(index + 1) % total], // right
     ];
   };
 
@@ -31,10 +31,7 @@ const Carousel = () => {
     }
 
     const tl = gsap.timeline({
-      defaults: {
-        duration: 1.2,
-        ease: "power2.inOut",
-      },
+      defaults: { ease: "power2.inOut", duration: 1.3 },
       onComplete: () => {
         setIndex((prev) => (prev + 1) % images.length);
       },
@@ -42,87 +39,80 @@ const Carousel = () => {
 
     timelineRef.current = tl;
 
-    // positions (tight, no gap)
     gsap.set(left, {
-      x: "-250%",
-      scale: 0.85,
-      opacity: 0.2,
-      rotateY: 15,
-      z: -80,
+      x: "-220%",
+      scale: 0.84,
+      opacity: 0.35,
+      rotateY: 22,
+      z: -120,
+     
     });
 
     gsap.set(center, {
       x: "0%",
-      scale: 1.2,
+      scale: 1.22,
       opacity: 1,
       rotateY: 0,
-      z: 1,
+      z: 20,
     });
 
     gsap.set(right, {
-      x: "250%",
-      scale: 0.85,
-      opacity: 0.7,
-      rotateY: -15,
-      z: -80,
+      x: "220%",
+      scale: 0.84,
+      opacity: 0.5,
+      rotateY: -22,
+      z: -120,
     });
 
-    // all move together
-   tl.to(
-     left,
-     {
-       opacity: 0.4,
-       duration: 0.6,
-       ease: "sine.out",
-     },
-     0,
-   );
-
-   tl.to(
-     left,
-     {
-       opacity: 0,
-       duration: 0.6,
-       ease: "expo.in",
-     },
-     0.6,
-   );
-
+    tl.to(
+      left,
+      {
+        x: "-420%", 
+        scale: 0.65,
+        opacity: 0,
+        rotateY: 45,
+        z: -220,
+        duration: 1.1, 
+        ease: "power3.in", 
+      },
+      0.2,
+    ); 
     tl.to(
       center,
       {
-        x: "-90%",
-        scale: 0.85,
-        opacity: 0.7,
-        rotateY: 15,
-        z: -80,
+        x: "-200%",
+        scale: 0.84,
+        opacity: 0.5,
+        rotateY: 22,
+        z: -120,
       },
       0,
     );
 
+    // Right → moves to center
     tl.to(
       right,
       {
         x: "0%",
-        scale: 1.2,
+        scale: 1.22,
         opacity: 1,
         rotateY: 0,
-        z: 0,
+        z: 20,
       },
       0,
     );
 
-    // subtle smooth motion
+    // gentle overall pulse 
     tl.to(
       containerRef.current,
       {
-        scale: 1.01,
-        duration: 0.6,
+        scale: 1.012,
+        duration: 0.8,
         yoyo: true,
         repeat: 1,
         ease: "sine.inOut",
       },
-      0,
+      0.3,
     );
   };
 
@@ -133,24 +123,24 @@ const Carousel = () => {
   const visibleImages = getVisible();
 
   return (
-    <div className="w-full flex justify-center items-center py-20 overflow-hidden ">
+    <div className="w-full flex justify-center items-center py-20 overflow-hidden">
       <div
         ref={containerRef}
-        className="relative w-[700px] h-[380px] flex items-center justify-center perspective-[1400px]"
+        className="relative w-[800px] h-[420px] flex items-center justify-center perspective-[1600px] overflow-hidden"
       >
         {visibleImages.map((img, i) => (
           <img
-            key={`${img}-${i}`}
+            key={`${img.src}-${i}-${index}`} 
             ref={(el) => (itemsRef.current[i] = el)}
             src={img}
             loading="lazy"
             alt="chair"
-            className={`absolute w-[260px] object-contain drop-shadow-2xl ${
+            className={`absolute w-[280px] object-contain drop-shadow-2xl pointer-events-none ${
               i === 1 ? "z-30" : "z-10"
             }`}
             style={{
               transformStyle: "preserve-3d",
-              willChange: "transform, opacity",
+              willChange: "transform, opacity, scale",
               backfaceVisibility: "hidden",
             }}
           />
