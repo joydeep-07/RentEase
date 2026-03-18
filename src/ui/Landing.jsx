@@ -1,6 +1,6 @@
 import React from "react";
-import chair from "../assets/images/chair.png";
 import Search from "../components/Search";
+import Carousel from "./Carousel";
 
 const Landing = () => {
   return (
@@ -38,11 +38,7 @@ const Landing = () => {
 
         {/* RIGHT IMAGE */}
         <div className="flex-1 flex justify-center md:justify-end items-center mt-8 md:mt-0">
-          <img
-            src={chair}
-            alt="chair"
-            className="w-[200px] sm:w-[240px] md:w-[320px] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.25)] transition-transform duration-500"
-          />
+         <Carousel/>
         </div>
 
         {/* SUBTLE GRADIENT OVERLAY */}
