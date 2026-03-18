@@ -1,17 +1,20 @@
-import React from 'react'
-import Hero from '../ui/Hero';
-import Testimonials from '../ui/Testimonials';
-import CurvedLoop from '../components/CurvedLoop';
-import Categories from '../ui/Categories';
-import WhyUs from '../ui/WhyUs';
-import Featured from '../ui/Featured';
+import React from "react";
+import Hero from "../ui/Hero";
+import Testimonials from "../ui/Testimonials";
+import CurvedLoop from "../components/CurvedLoop";
+import Categories from "../ui/Categories";
+import WhyUs from "../ui/WhyUs";
+import Featured from "../ui/Featured";
+import Landing from "../ui/Landing";
 
 const Home = () => {
-    
   return (
     <>
-      <Hero />
-      <Categories />
+      <div className="bg-[var(--bg-card)]/40 ">
+        <Landing />
+        <Categories />
+      </div>
+
       <Featured />
       <WhyUs />
       {/* <CurvedLoop
@@ -25,6 +28,6 @@ const Home = () => {
       <Testimonials />
     </>
   );
-}
+};
 
-export default Home
+export default Home;
