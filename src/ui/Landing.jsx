@@ -1,5 +1,6 @@
 import React from "react";
 import chair from "../assets/images/chair.png";
+import Search from "../components/Search";
 
 const Landing = () => {
   return (
@@ -21,11 +22,13 @@ const Landing = () => {
           </p>
 
           <div className="flex items-center justify-start gap-4 mt-6">
-            <button className="relative overflow-hidden px-6 sm:px-8 py-3 rounded-lg font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group sm:w-auto">
+            {/* <button className="relative overflow-hidden px-6 sm:px-8 py-3 rounded-lg font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/5 backdrop-blur-md border border-[var(--border-light)] hover:border-[var(--accent-blue)]/20 shadow-sm transition-all duration-500 ease-out group sm:w-auto">
               <span className="flex items-center uppercase text-xs justify-center gap-2">
                 Explore
               </span>
-            </button>
+            </button> */}
+
+            <Search/>
           </div>
         </div>
 
