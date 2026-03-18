@@ -9,11 +9,11 @@ const Landing = () => {
         {/* LEFT CONTENT */}
         <div className="flex-1 z-10 text-left ">
           <h1 className="text-4xl sm:text-4xl md:text-5xl xl:text-5xl font-medium font-fuzzy leading-tight">
-            Rent what you need{" "}
+            "Commitment" Issues ? Just{" "}
             <span className="text-[var(--accent-primary)]">
-              when you need it
+             Rent
             </span>{" "}
-            without buying.
+           everything
           </h1>
 
           <p className="mt-4 text-[var(--text-muted)] max-w-md mx-auto md:mx-0 text-xs sm:text-sm leading-relaxed">
