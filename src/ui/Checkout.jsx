@@ -71,7 +71,7 @@ const Checkout = () => {
       : today;
 
   return (
-    <div className="min-h-screen bg-[var(--bg-main)] p-6">
+    <div className="min-h-screen bg-[var(--bg-main)] md:p-4 px-3">
       {/* Header */}
       <div className="max-w-7xl mx-auto flex items-center justify-between mb-6">
         <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)]">
@@ -99,7 +99,7 @@ const Checkout = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* Shipping */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Box className="border border-[var(--border-light)]/30 p-6 rounded-sm bg-[var(--bg-secondary)]/50 flex flex-col gap-5">
+            <Box className="border border-[var(--border-light)]/30 p-2 md:p-6 rounded-sm bg-[var(--bg-card)] flex flex-col gap-5">
               <Typography
                 sx={{
                   fontSize: "13px",
@@ -115,7 +115,7 @@ const Checkout = () => {
 
               <div className="flex gap-4">
                 <DatePicker
-                  label="Delivery Start Date"
+                  label="Delivery Date"
                   value={startDate ? dayjs(startDate) : null}
                   minDate={dayjs(minStartDate)}
                   onChange={(newValue) => {
@@ -187,8 +187,8 @@ const Checkout = () => {
                 key={method}
                 className={`flex items-center gap-3 border border-[var(--border-light)]/50 p-3 rounded cursor-pointer transition-colors ${
                   payment === method
-                    ? "bg-[var(--bg-secondary)]"
-                    : "hover:bg-[var(--bg-secondary)]"
+                    ? "bg-[var(--bg-secondary)]/50"
+                    : "hover:bg-[var(--bg-secondary)]/50"
                 }`}
               >
                 <input
@@ -209,20 +209,12 @@ const Checkout = () => {
 
             {payment === "card" && (
               <Box className="flex flex-col gap-5">
+                <h3 className="text-sm uppercase text-[var(--text-muted)] mt-5">
+                 Enter card Details
+                </h3>
                 {/* CARD NUMBER */}
 
-                <TextField
-                  label="Card Number"
-                  fullWidth
-                  sx={inputStyles}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <CreditCard size={18} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                <TextField label="Card Number" fullWidth sx={inputStyles} />
 
                 {/* EXPIRY + CVC */}
 
@@ -237,13 +229,7 @@ const Checkout = () => {
                     label="CVC"
                     fullWidth
                     sx={inputStyles}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Lock size={16} />
-                        </InputAdornment>
-                      ),
-                    }}
+                   
                   />
                 </div>
 
