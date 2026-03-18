@@ -99,7 +99,7 @@ const Checkout = () => {
         <div className="lg:col-span-2 space-y-6">
           {/* Shipping */}
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Box className="border border-[var(--border-light)]/30 p-2 md:p-6 rounded-sm bg-[var(--bg-card)] flex flex-col gap-5">
+            <Box className="border border-[var(--border-light)]/30 p-2 md:p-6 rounded-sm bg-[var(--bg-card)]/50 flex flex-col gap-5">
               <Typography
                 sx={{
                   fontSize: "13px",
@@ -210,7 +210,7 @@ const Checkout = () => {
             {payment === "card" && (
               <Box className="flex flex-col gap-5">
                 <h3 className="text-sm uppercase text-[var(--text-muted)] mt-5">
-                 Enter card Details
+                  Enter card Details
                 </h3>
                 {/* CARD NUMBER */}
 
@@ -225,12 +225,7 @@ const Checkout = () => {
                     sx={inputStyles}
                   />
 
-                  <TextField
-                    label="CVC"
-                    fullWidth
-                    sx={inputStyles}
-                   
-                  />
+                  <TextField label="CVC" fullWidth sx={inputStyles} />
                 </div>
 
                 {/* NAME ON CARD */}
@@ -369,9 +364,9 @@ const Checkout = () => {
           {/* BUTTON */}
           <button
             disabled={!startDate}
-            className="w-full bg-[var(--text-main)] disabled:opacity-50 text-[var(--bg-main)] py-3 rounded-lg font-semibold"
+            className="w-full bg-[var(--accent-primary)] disabled:opacity-50 text-white py-3 rounded-sm"
           >
-            Pay ₹{firstInstallment.toLocaleString("en-IN")} & Place Order →
+            Pay ₹{firstInstallment.toLocaleString("en-IN")} & Place Order 
           </button>
 
           <p className="text-xs text-[var(--text-muted)] text-center">
