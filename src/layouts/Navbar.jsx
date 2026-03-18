@@ -58,7 +58,7 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden sm:block">
-            <SelectCity />
+            {!isAdmin && <SelectCity />}
           </div>
         </div>
 

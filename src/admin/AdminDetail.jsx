@@ -103,9 +103,12 @@ const AdminDetail = () => {
       {/* Button */}
       <button
         onClick={toggleDropdown}
-        className="relative border border-[var(--border-light)] overflow-hidden p-1.5 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-blue)]"
+        className="relative border border-[var(--border-light)] overflow-hidden p-2.5 rounded-full font-medium tracking-[0.1em] text-[var(--text-main)] hover:text-[var(--accent-green)]"
       >
-      <ShieldCheck className="text-[var(--accent-green)]" size={18}/>
+        <div className="flex items-center gap-2 uppercase text-xs">
+          <ShieldCheck className="text-[var(--accent-green)]" size={18} /> admin
+          panel
+        </div>
       </button>
 
       {/* Dropdown */}
@@ -128,7 +131,7 @@ const AdminDetail = () => {
             </div>
 
             <div>
-              <p className="font-semibold text-[var(--text-main)]">Admin</p>
+              <p className="font-medium text-[var(--text-main)]">Admin</p>
               <p className="text-xs text-[var(--text-secondary)]">
                 admin@panel.com
               </p>
