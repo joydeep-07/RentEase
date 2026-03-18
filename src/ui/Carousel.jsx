@@ -135,7 +135,7 @@ const Carousel = () => {
             src={img}
             loading="lazy"
             alt="chair"
-            className={`absolute w-[280px] object-contain drop-shadow-2xl pointer-events-none ${
+            className={`absolute w-[270px] object-contain drop-shadow-2xl pointer-events-none ${
               i === 1 ? "z-30" : "z-10"
             }`}
             style={{

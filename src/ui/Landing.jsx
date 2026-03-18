@@ -8,8 +8,8 @@ const Landing = () => {
       <div className="relative w-full flex flex-col md:flex-row items-center justify-between rounded-[30px] md:rounded-[50px] bg-[var(--bg-main)]/50 overflow-hidden px-5 sm:px-8 md:px-20 py-10 md:py-16 shadow-sm">
         {/* LEFT CONTENT */}
         <div className="flex-1 z-10 text-left ">
-          <h1 className="text-4xl sm:text-4xl md:text-5xl xl:text-5xl font-medium font-fuzzy leading-tight">
-            "Commitment" Issues ? Just{" "}
+          <h1 className="text-4xl sm:text-4xl md:text-5xl xl:text-5xl md:w-xl font-medium font-fuzzy leading-tight">
+            Commitment Issues ? Just{" "}
             <span className="text-[var(--accent-primary)]">
              Rent
             </span>{" "}
