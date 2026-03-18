@@ -262,13 +262,12 @@ const AddItem = () => {
                 label="Available From"
                 value={availableFrom}
                 onChange={(newValue) => setAvailableFrom(newValue)}
-                // This sx targets the Calendar Popout specifically
                 slotProps={{
                   textField: {
                     fullWidth: true,
-                    sx: inputStyles, // This applies your custom styles to the input box
+                    sx: inputStyles, 
                   },
-                  // This ensures the popup/popper elements also respect your dark mode variables
+                  
                   layout: {
                     sx: {
                       "& .MuiPickersDay-root": { color: "var(--text-main)" },

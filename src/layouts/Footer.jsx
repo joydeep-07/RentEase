@@ -76,16 +76,27 @@ export default function Footer() {
               Subscribe to get offers and new furniture arrivals.
             </p>
 
-            <div className="flex items-center mt-5 border border-[var(--border-light)] rounded-lg overflow-hidden">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 text-sm bg-transparent outline-none text-[var(--text-main)] placeholder-[var(--text-secondary)]"
-              />
+            <div className="mt-6 w-full">
+              <div className="flex">
+                {" "}
+                {/* Input */}
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 text-sm border border-[var(--border-light)] rounded-l-sm bg-transparent outline-none 
+      text-[var(--text-main)] placeholder-[var(--text-secondary)]"
+                />
+                {/* Button */}
+                <button
+                  className="px-5 py-3 bg-[var(--accent-primary)] text-white text-xs font-medium uppercase tracking-wider  rounded-r-sm hover:opacity-90 "
+                >
+                  Subscribe
+                </button>
+              </div>
 
-              <button className="px-4 py-2 bg-[var(--accent-primary)] text-white text-sm hover:opacity-90 transition">
-                Subscribe
-              </button>
+              <p className="text-xs mt-2 text-[var(--text-secondary)]">
+                Get updates & offers. No spam.
+              </p>
             </div>
           </div>
         </div>

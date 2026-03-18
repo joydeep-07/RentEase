@@ -17,7 +17,7 @@ const SearchBar = ({ data, onSelect }) => {
   const handleSuggestionClick = (text) => {
     setQuery(text);
     setSuggestions([]);
-    onSelect(text); // send search to parent
+    onSelect(text);
   };
 
   return (

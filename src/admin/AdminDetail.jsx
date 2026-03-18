@@ -26,7 +26,6 @@ const AdminDetail = () => {
   ];
 
   const toggleDropdown = () => {
-    // ✅ FIXED
     if (!isAdmin) {
       navigate("/admin");
       return;
@@ -39,7 +38,6 @@ const AdminDetail = () => {
       navigate(item.path);
     }
 
-    // ✅ FIXED
     if (item.label === "Logout") {
       dispatch(logoutAdmin());
       navigate("/");

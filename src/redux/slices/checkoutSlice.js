@@ -1,9 +1,8 @@
-// src/store/slices/checkoutSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  product: null, // the selected product
-  duration: 1, // rental duration in months
+  product: null, 
+  duration: 1, 
   totalRent: 0,
   totalAmount: 0,
 };
@@ -13,7 +12,6 @@ const checkoutSlice = createSlice({
   initialState,
   reducers: {
     setCheckoutProduct: (state, action) => {
-      // payload should contain product, duration, totalRent, totalAmount
       const { product, duration, totalRent, totalAmount } = action.payload;
       state.product = product;
       state.duration = duration;

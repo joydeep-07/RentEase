@@ -75,13 +75,13 @@ const Navbar = () => {
             <SearchIcon size={16} />
           </button>
 
-          {/* ✅ ADMIN */}
+          {/* ADMIN */}
           {isAdmin && <AdminDetail />}
 
-          {/* ✅ USER */}
+          {/* USER */}
           {isLogin && !isAdmin && <UserDetail />}
 
-          {/* ✅ LOGIN BUTTON */}
+          {/* LOGIN BUTTON */}
           {!isLogin && !isAdmin && (
             <button
               onClick={() => navigate("/auth")}
