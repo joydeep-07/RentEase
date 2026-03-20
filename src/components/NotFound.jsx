@@ -5,7 +5,6 @@ import cat from "../assets/animation/cat.json";
 const NotFound = ({msg, heading}) => {
   return (
     <div className="py-20 flex flex-col items-center justify-start bg-[var(--bg-primary)] text-center px-4">
-      {/* Animation */}
       <div className="w-72 md:w-96">
         <Lottie animationData={cat} loop={true} />
       </div>
