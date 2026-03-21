@@ -141,7 +141,7 @@ const ActiveRents = () => {
               </div>
 
               <div className="mt-3 flex gap-3">
-                 <button className="flex-1 py-2.5 text-sm font-semibold border border-[var(--border-light)] rounded-lg hover:bg-[var(--bg-tertiary)]/50 hover:border-[var(--text-secondary)]/20 text-[var(--text-main)] transition-all">
+                 <button className="flex-1 py-2.5 text-sm font-semibold border border-[var(--border-light)] rounded-sm hover:bg-[var(--bg-tertiary)]/50 hover:border-[var(--text-secondary)]/20 text-[var(--text-main)] transition-all">
                    View Details
                  </button>
                  <button className="flex-1 py-2.5 text-sm font-semibold bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] text-white rounded-sm transition-all shadow-md shadow-[var(--accent-primary)]/20 hover:shadow-[var(--accent-secondary)]/30 ">

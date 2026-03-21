@@ -91,7 +91,7 @@ const Profile = () => {
         {/* FORM */}
 
         <div className="flex flex-col gap-6 w-full">
-          <Box className="border border-[var(--border-light)]/30 flex-1 p-4 rounded-sm bg-[var(--bg-secondary)]/50 ">
+          <Box className="border border-[var(--border-light)]/30 flex-1 p-4 rounded-sm bg-[var(--bg-secondary)]/20 ">
             <div className="flex flex-col gap-5">
               {/* Row 1 */}
               <div className="flex gap-5 flex-col md:flex-row">
@@ -119,7 +119,7 @@ const Profile = () => {
 
           {/* ADDRESS FORM */}
 
-          <Box className="border border-[var(--border-light)]/30 flex-1 p-4 rounded-sm bg-[var(--bg-secondary)]/50 ">
+          <Box className="border border-[var(--border-light)]/30 flex-1 p-4 rounded-sm bg-[var(--bg-secondary)]/20 ">
             <div className="flex flex-col gap-5">
               {/* Row 3 */}
               <div className="flex gap-5 flex-col md:flex-row">
