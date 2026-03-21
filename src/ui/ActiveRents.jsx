@@ -70,7 +70,7 @@ const ActiveRents = () => {
                   alt={rent.productName}
                   className="w-full h-full object-cover rounded-sm transition-transform duration-700"
                 />
-                <div className={`absolute top-2 right-2 px-3 py-1 text-xs font-semibold tracking-wide rounded-full bg-[var(--bg-main)]/50 backdrop-blur-md shadow-sm border ${rent.status === 'Active' ? 'text-green-500 border-green-500/30' : 'text-yellow-500 border-yellow-500/30'}`}>
+                <div className={`absolute top-2 right-2 px-3 py-1 text-xs tracking-wide rounded-full bg-[var(--bg-main)] border ${rent.status === 'Active' ? 'text-green-500 border-green-500/30' : 'text-yellow-500 border-yellow-500/30'}`}>
                   {rent.status}
                 </div>
               </div>
@@ -141,10 +141,10 @@ const ActiveRents = () => {
               </div>
 
               <div className="mt-3 flex gap-3">
-                 <button className="flex-1 py-2.5 text-sm font-semibold border border-[var(--border-light)] rounded-lg hover:bg-[var(--bg-tertiary)] hover:border-[var(--text-secondary)]/50 text-[var(--text-main)] transition-all">
+                 <button className="flex-1 py-2.5 text-sm font-semibold border border-[var(--border-light)] rounded-lg hover:bg-[var(--bg-tertiary)]/50 hover:border-[var(--text-secondary)]/20 text-[var(--text-main)] transition-all">
                    View Details
                  </button>
-                 <button className="flex-1 py-2.5 text-sm font-semibold bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] text-white rounded-lg transition-all shadow-md shadow-[var(--accent-primary)]/20 hover:shadow-[var(--accent-secondary)]/30 transform hover:-translate-y-0.5">
+                 <button className="flex-1 py-2.5 text-sm font-semibold bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] text-white rounded-sm transition-all shadow-md shadow-[var(--accent-primary)]/20 hover:shadow-[var(--accent-secondary)]/30 ">
                    Pay Now
                  </button>
               </div>
