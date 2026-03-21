@@ -9,24 +9,41 @@ import {
 } from "lucide-react";
 
 const ActiveRents = () => {
-  const rents = [
-    {
-      id: 1,
-      productName: "Sony A7 III Camera",
-      image:
-        "https://i.pinimg.com/736x/08/31/b3/0831b386694b12501172198ab959e770.jpg",
-      monthlyRent: 2500,
-      securityDeposit: 4000,
-      duration: 6,
-      startDate: "12 Apr 2026",
-      nextPayment: "12 May 2026",
-      endDate: "12 Oct 2026",
-      status: "Active",
-      remainingInstallments: 4,
-      category: "Camera",
-      progress: 33,
-    },
-  ];
+ const rents = [
+   {
+     id: 1,
+     productName: "MacBook Air M2",
+     image:
+       "https://i.pinimg.com/736x/3c/03/a5/3c03a5e367e2335f058355443220e9c7.jpg",
+     monthlyRent: 3200,
+     securityDeposit: 8000,
+     duration: 12,
+     startDate: "01 Jan 2026",
+     nextPayment: "01 Apr 2026",
+     endDate: "01 Jan 2027",
+     status: "Active",
+     remainingInstallments: 9,
+     category: "Laptop",
+     progress: 25,
+   },
+
+   {
+     id: 2,
+     productName: "Royal Enfield Classic 350",
+     image:
+       "https://i.pinimg.com/736x/01/c5/aa/01c5aab2bf9d37be9c7a97e5bc6b9520.jpg",
+     monthlyRent: 4500,
+     securityDeposit: 10000,
+     duration: 10,
+     startDate: "15 Feb 2026",
+     nextPayment: "15 Apr 2026",
+     endDate: "15 Dec 2026",
+     status: "Active",
+     remainingInstallments: 7,
+     category: "Bike",
+     progress: 30,
+   },
+ ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-0 py-10">
