@@ -11,27 +11,23 @@ import Gallery from "../ui/Gallery";
 const Home = () => {
   return (
     <>
-      {/* <div className="bg-[var(--bg-card)]/40 ">
+      {/* MOBILE ONLY */}
+      <div className="md:hidden bg-[var(--bg-card)]/40">
         <Landing />
+      </div>
+
+      {/* LAPTOP / DESKTOP ONLY */}
+      <div className="hidden md:flex w-full items-center justify-center">
+        <Gallery />
+      </div>
+
+      {/* COMMON SECTION */}
+      <div className="relative z-[10000]">
         <Categories />
-      </div> */}
-
-      {/* <CurvedLoop
-        marqueeText="Rent what you need when you need it without buying."
-        speed={1}
-        curveAmount={-310}
-        direction="right"
-        interactive
-        className=" md:text-6xl text-8xl"
-      /> */}
-
-      <Gallery />
-     <div className="relative z-[10000]">
-  <Categories />
-  <Featured />
-  <WhyUs />
-  <Testimonials />
-</div>
+        <Featured />
+        <WhyUs />
+        <Testimonials />
+      </div>
     </>
   );
 };
