@@ -47,7 +47,7 @@ const Gallery = () => {
     gridColumn: isMobile ? "auto" : col,
     aspectRatio: "1 / 1",
     width: "100%",
-    maxWidth: isMobile ? "100%" : "clamp(80px, 10vw, 150px)", // 🔥 mobile full width
+    maxWidth: isMobile ? "100%" : "clamp(80px, 10vw, 150px)",
     borderRadius: isMobile ? "12px" : "0px",
     overflow: "hidden",
   });
@@ -60,40 +60,54 @@ const Gallery = () => {
   };
 
   useEffect(() => {
-    imagesRef.current.forEach((el) => {
-      if (!el) return;
+    const ctx = gsap.context(() => {
+      imagesRef.current.forEach((el) => {
+        if (!el) return;
 
-      gsap.to(el, {
-        xPercent: Math.random() > 0.5 ? 20 : -20,
-        ease: "power1.out",
-        force3D: true,
-        scrollTrigger: {
+        // horizontal smooth movement
+        gsap.to(el, {
+          xPercent: Math.random() > 0.5 ? 20 : -20,
+          ease: "power1.out",
+          force3D: true,
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "top top",
+            scrub: 2.5,
+          },
+        });
+
+        // shrink at top
+        ScrollTrigger.create({
           trigger: el,
-          start: "top bottom",
-          end: "top top",
-          scrub: 2.5,
-        },
-      });
-
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top top",
-        onEnter: () => {
-          gsap.to(el, {
-            scale: 0.5,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(el, {
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out",
-          });
-        },
+          start: "top top",
+          onEnter: () => {
+            gsap.to(el, {
+              scale: 0.5,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(el, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          },
+        });
       });
     });
+
+   
+    const refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(refreshTimeout);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -114,9 +128,7 @@ const Gallery = () => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: isMobile
-            ? "repeat(2, 1fr)" // 🔥 mobile fix
-            : "repeat(8, 1fr)", // ✅ desktop unchanged
+          gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(8, 1fr)",
           gridTemplateRows: isMobile ? "auto" : "repeat(10, 1fr)",
           gap: isMobile ? "10px" : "6px",
           width: "100%",
@@ -125,8 +137,6 @@ const Gallery = () => {
           padding: "10px",
         }}
       >
-        {/* SAME layout — desktop untouched */}
-
         <div style={boxStyle(1, 2)} ref={(el) => (imagesRef.current[0] = el)}>
           <img src={bed1} style={imgStyle} />
         </div>
