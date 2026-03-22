@@ -9,6 +9,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { InputAdornment } from "@mui/material";
 import { CreditCard } from "lucide-react";
+import { toast } from "sonner";
+
 const Checkout = () => {
   const [payment, setPayment] = useState("card");
   const [startDate, setStartDate] = useState("");
@@ -17,7 +19,7 @@ const Checkout = () => {
   const { product, duration } = checkout;
 
   if (!product) {
-    return <EmptyCart />;
+    return <EmptyCart text={"Your Cart is empty"} />;
   }
 
 
@@ -49,6 +51,70 @@ const Checkout = () => {
     "& input": {
       color: "var(--text-main)",
     },
+  };
+
+
+  const handlePlaceOrder = () => {
+    if (!startDate) return;
+
+    // 🧠 Generate dates
+    const start = dayjs(startDate);
+    const nextPayment = start.add(1, "month");
+    const endDate = start.add(duration, "month");
+
+    // 📦 Create full order object
+    const order = {
+      id: Date.now(),
+
+      productName: product.productName,
+      image: product.image,
+      category: product.category || "General",
+
+      monthlyRent,
+      securityDeposit,
+      duration,
+
+      startDate: start.format("DD MMM YYYY"),
+      nextPayment: nextPayment.format("DD MMM YYYY"),
+      endDate: endDate.format("DD MMM YYYY"),
+
+      remainingInstallments: duration - 1,
+      progress: Math.round((1 / duration) * 100),
+
+      status: "Active",
+
+      // 🔥 FULL SHIPPING INFO
+      shipping: {
+        phone: document.querySelector('input[type="tel"]')?.value,
+        firstName: document.querySelector('input[label="First Name"]')?.value,
+        lastName: document.querySelector('input[label="Last Name"]')?.value,
+        address: document.querySelector('input[label="Address"]')?.value,
+        city: document.querySelector('input[label="City"]')?.value,
+        zip: document.querySelector('input[label="ZIP Code"]')?.value,
+        state: document.querySelector('input[label="State"]')?.value,
+        country: "India",
+      },
+
+      paymentMethod: payment,
+
+      totalPayable,
+      firstInstallment,
+    };
+
+    // 🗂️ Get existing orders
+    const existingOrders =
+      JSON.parse(localStorage.getItem("activeRents")) || [];
+
+    // ➕ Add new order
+    const updatedOrders = [order, ...existingOrders];
+
+    // 💾 Save to localStorage
+    localStorage.setItem("activeRents", JSON.stringify(updatedOrders));
+
+    // 🔥 Toast
+    toast.success("Order placed successfully 🎉");
+
+    // (optional) redirect or clear state
   };
 
   /* ---------------- RENT CALCULATIONS ---------------- */
@@ -363,10 +429,11 @@ const Checkout = () => {
 
           {/* BUTTON */}
           <button
+            onClick={handlePlaceOrder}
             disabled={!startDate}
             className="w-full bg-[var(--accent-primary)] disabled:opacity-50 text-white py-3 rounded-sm"
           >
-            Pay ₹{firstInstallment.toLocaleString("en-IN")} & Place Order 
+            Pay ₹{firstInstallment.toLocaleString("en-IN")} & Place Order
           </button>
 
           <p className="text-xs text-[var(--text-muted)] text-center">

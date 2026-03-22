@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import cat from "../assets/animation/cart.json";
 import { useNavigate } from 'react-router-dom';
 
-const EmptyCart = () => {
+const EmptyCart = ({text}) => {
     const navigate = useNavigate();
   return (
     <div className="py-20 flex flex-col items-center justify-start bg-[var(--bg-primary)] text-center px-4">
@@ -14,7 +14,7 @@ const EmptyCart = () => {
 
       {/* Text */}
       <h1 className="text-3xl md:text-4xl font-heading mt-6 text-[var(--text-main)]">
-        Your Cart is Empty
+       {text}
       </h1>
 
       <p className="mt-2 text-[var(--text-secondary)] max-w-xl">
