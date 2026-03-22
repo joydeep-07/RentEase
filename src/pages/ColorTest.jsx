@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeToggle from "../components/ThemeToggle";
+import Success from "../ui/Success";
 
 const ColorTest = () => {
   const colorBox =
@@ -8,6 +9,8 @@ const ColorTest = () => {
   return (
     <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] p-10 space-y-12 transition-all">
       <ThemeToggle />
+
+      <Success/>
 
       {/* Heading Font */}
       <section>

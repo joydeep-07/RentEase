@@ -10,18 +10,20 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { InputAdornment } from "@mui/material";
 import { CreditCard } from "lucide-react";
 import { toast } from "sonner";
+import Success from "./Success";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [payment, setPayment] = useState("card");
   const [startDate, setStartDate] = useState("");
-
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
   const checkout = useSelector((state) => state.checkout);
   const { product, duration } = checkout;
 
   if (!product) {
     return <EmptyCart text={"Your Cart is empty"} />;
   }
-
 
   const inputStyles = {
     "& .MuiInputLabel-root": {
@@ -53,6 +55,17 @@ const Checkout = () => {
     },
   };
 
+  /* ---------------- RENT CALCULATIONS ---------------- */
+
+  const monthlyRent = product.pricePerDay * 30;
+  const securityDeposit = product.securityDeposit || monthlyRent;
+
+  const firstInstallment = monthlyRent + securityDeposit;
+  const remainingInstallments = duration - 1;
+
+  const totalPayable = firstInstallment + remainingInstallments * monthlyRent;
+
+  // ==================
 
   const handlePlaceOrder = () => {
     if (!startDate) return;
@@ -114,18 +127,14 @@ const Checkout = () => {
     // 🔥 Toast
     toast.success("Order placed successfully 🎉");
 
-    // (optional) redirect or clear state
+    // ✅ Show success screen
+    setShowSuccess(true);
+
+    // ⏳ Redirect after 3 sec
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
   };
-
-  /* ---------------- RENT CALCULATIONS ---------------- */
-
-  const monthlyRent = product.pricePerDay * 30;
-  const securityDeposit = product.securityDeposit || monthlyRent;
-
-  const firstInstallment = monthlyRent + securityDeposit;
-  const remainingInstallments = duration - 1;
-
-  const totalPayable = firstInstallment + remainingInstallments * monthlyRent;
 
   /* ---------------- DATE RESTRICTIONS ---------------- */
 
@@ -442,8 +451,14 @@ const Checkout = () => {
           </p>
         </div>
       </div>
+
+      {showSuccess && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <Success />
+        </div>
+      )}
     </div>
   );
-};
+};;
 
 export default Checkout;
