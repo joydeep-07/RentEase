@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import UserDetail from "../ui/UserDetail";
 import SelectCity from "../ui/SelectCity";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AdminDetail from "../admin/AdminDetail";
 
 const Navbar = () => {
@@ -15,7 +16,11 @@ const Navbar = () => {
 
   const [openSearch, setOpenSearch] = useState(false);
   const drawerRef = useRef(null);
+  const navRef = useRef(null);
+
   const navigate = useNavigate();
+
+  gsap.registerPlugin(ScrollTrigger);
 
   const openDrawer = () => setOpenSearch(true);
 
@@ -38,10 +43,53 @@ const Navbar = () => {
     }
   }, [openSearch]);
 
+  // 🔥 SCROLL TRIGGER NAVBAR HIDE/SHOW
+  useEffect(() => {
+    let lastScroll = 0;
+
+    const showNav = () => {
+      gsap.to(navRef.current, {
+        y: "0%",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    const hideNav = () => {
+      gsap.to(navRef.current, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    const trigger = ScrollTrigger.create({
+      start: "top 0", // after 300px
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        const currentScroll = self.scroll();
+
+        // prevent jitter
+        if (currentScroll > lastScroll + 5) {
+          hideNav(); // scrolling down
+        } else if (currentScroll < lastScroll - 5) {
+          showNav(); // scrolling up
+        }
+
+        lastScroll = currentScroll;
+      },
+    });
+
+    return () => {
+      trigger.kill();
+    };
+  }, []);
+
   return (
     <>
       {/* NAVBAR */}
       <nav
+        ref={navRef}
         className="w-full h-16 px-4 md:px-8 flex items-center justify-between
         bg-[var(--bg-main)] backdrop-blur-md
         border-b border-[var(--border-light)]/10
@@ -57,9 +105,7 @@ const Navbar = () => {
             <span className="text-[var(--text-main)]">Ease</span>
           </Link>
 
-          <div className="hidden sm:block">
-            {!isAdmin && <SelectCity />}
-          </div>
+          <div className="hidden sm:block">{!isAdmin && <SelectCity />}</div>
         </div>
 
         {/* RIGHT */}
