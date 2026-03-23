@@ -127,7 +127,7 @@ useEffect(() => {
   return (
     <div>
       {/* Center Fixed Text */}
-      <div className="fixed inset-0 z-[100] flex items-center justify-center text-center pointer-events-none px-4">
+      <div className="fixed inset-0 z-[9] flex items-center justify-center text-center pointer-events-none px-4">
         <div>
           <div style={{ position: "relative" }}>
             <TextPressure

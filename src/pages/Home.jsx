@@ -22,7 +22,7 @@ const Home = () => {
       </div>
 
       {/* COMMON SECTION */}
-      <div className="relative z-[10000]">
+      <div className="relative z-[10]">
         <Categories />
         <Featured />
         <WhyUs />
