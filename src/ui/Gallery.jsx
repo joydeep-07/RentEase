@@ -26,6 +26,18 @@ import fridge3 from "../assets/fridge/fridge3.jpg";
 import fridge4 from "../assets/fridge/fridge4.jpg";
 import fridge5 from "../assets/fridge/fridge5.jpg";
 
+import cam6 from "../assets/camera/cam6.jpg";
+import cam7 from "../assets/camera/cam7.jpg";
+import cam8 from "../assets/camera/cam8.jpg";
+import cam9 from "../assets/camera/cam9.jpg";
+import cam10 from "../assets/camera/cam10.jpg";
+
+import sofa6 from "../assets/sofa/sofa6.jpg";
+import sofa7 from "../assets/sofa/sofa7.jpg";
+import sofa8 from "../assets/sofa/sofa8.jpg";
+import sofa9 from "../assets/sofa/sofa9.jpg";
+import sofa10 from "../assets/sofa/sofa10.jpg";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Gallery = () => {
@@ -47,68 +59,67 @@ const Gallery = () => {
     gridColumn: isMobile ? "auto" : col,
     aspectRatio: "1 / 1",
     width: "100%",
-    maxWidth: isMobile ? "100%" : "clamp(80px, 10vw, 150px)",
+    maxWidth: "100%",
     borderRadius: isMobile ? "12px" : "0px",
     overflow: "hidden",
   });
 
   const imgStyle = {
-    width: "100%",
-    height: "100%",
+    width: "80%",
+    height: "80%",
     objectFit: "cover",
     display: "block",
   };
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      imagesRef.current.forEach((el) => {
-        if (!el) return;
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    imagesRef.current.forEach((el, i) => {
+      if (!el) return;
 
-        // horizontal smooth movement
-        gsap.to(el, {
-          xPercent: Math.random() > 0.5 ? 20 : -20,
-          ease: "power1.out",
-          force3D: true,
+      // Horizontal movement Pattern
+      const direction = i % 2 === 0 ? 1 : -1; // alternate
+      const intensity = ((i % 3) + 1) * 8; // 8,16,24 variation
+
+      // Horizontal movement
+      gsap.to(el, {
+        xPercent: direction * intensity,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "top top",
+          scrub: 3.2,
+        },
+      });
+
+      //Shrink Animation
+      gsap.fromTo(
+        el,
+        { scale: 1 },
+        {
+          scale: 0.5,
+          ease: "none",
           scrollTrigger: {
             trigger: el,
-            start: "top bottom",
+            start: "top 20%",
             end: "top top",
-            scrub: 2.5,
+            scrub: true,
           },
-        });
-
-        // shrink at top
-        ScrollTrigger.create({
-          trigger: el,
-          start: "top top",
-          onEnter: () => {
-            gsap.to(el, {
-              scale: 0.5,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(el, {
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          },
-        });
-      });
+        },
+      );
     });
+  });
 
-   
-    const refreshTimeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
+  const refreshTimeout = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 500);
 
-    return () => {
-      clearTimeout(refreshTimeout);
-      ctx.revert();
-    };
-  }, []);
+  return () => {
+    clearTimeout(refreshTimeout);
+    ctx.revert();
+  };
+}, []);
 
   return (
     <div>
@@ -126,15 +137,14 @@ const Gallery = () => {
 
       {/* Gallery */}
       <div
+        className=" w-full "
         style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(8, 1fr)",
           gridTemplateRows: isMobile ? "auto" : "repeat(10, 1fr)",
           gap: isMobile ? "10px" : "6px",
           width: "100%",
-          maxWidth: "1200px",
-          margin: "auto",
-          padding: "10px",
+          padding: isMobile ? "10px" : "0px", 
         }}
       >
         <div style={boxStyle(1, 2)} ref={(el) => (imagesRef.current[0] = el)}>
@@ -205,6 +215,48 @@ const Gallery = () => {
         </div>
         <div style={boxStyle(10, 7)} ref={(el) => (imagesRef.current[19] = el)}>
           <img src={fridge5} style={imgStyle} />
+        </div>
+
+        {/* EXTRA IMAGES (added, no design change) */}
+
+        <div style={boxStyle(1, 4)} ref={(el) => (imagesRef.current[20] = el)}>
+          <img src={cam6} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(2, 5)} ref={(el) => (imagesRef.current[21] = el)}>
+          <img src={cam7} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(3, 7)} ref={(el) => (imagesRef.current[22] = el)}>
+          <img src={cam8} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(4, 4)} ref={(el) => (imagesRef.current[23] = el)}>
+          <img src={cam9} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(5, 2)} ref={(el) => (imagesRef.current[24] = el)}>
+          <img src={cam10} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(6, 4)} ref={(el) => (imagesRef.current[25] = el)}>
+          <img src={sofa6} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(7, 6)} ref={(el) => (imagesRef.current[26] = el)}>
+          <img src={sofa7} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(8, 4)} ref={(el) => (imagesRef.current[27] = el)}>
+          <img src={sofa8} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(9, 2)} ref={(el) => (imagesRef.current[28] = el)}>
+          <img src={sofa9} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(10, 5)} ref={(el) => (imagesRef.current[29] = el)}>
+          <img src={sofa10} style={imgStyle} />
         </div>
       </div>
     </div>
