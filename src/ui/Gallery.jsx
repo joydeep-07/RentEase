@@ -70,6 +70,8 @@ const Gallery = () => {
     height: "80%",
     objectFit: "cover",
     display: "block",
+    padding: "6px",
+    border: "1px solid var(--text-muted) "
   };
 
 useEffect(() => {
