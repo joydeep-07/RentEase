@@ -119,7 +119,7 @@ const CurvedLoop = ({
       onPointerLeave={endDrag}
     >
       <svg
-        className="select-none w-full overflow-visible block aspect-[100/12] text-[6rem] font-bold uppercase leading-none"
+        className="select-none w-full overflow-visible block pt-15  bg-gradient-to-b from-transparent to-[var(--bg-main)] aspect-[100/12] text-[6rem] font-bold uppercase leading-none"
         viewBox="0 0 1440 120"
       >
         <text
