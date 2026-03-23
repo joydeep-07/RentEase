@@ -53,7 +53,7 @@ const Navbar = () => {
         className="w-full h-16 px-4 md:px-8 flex items-center justify-between
         bg-[var(--bg-main)] backdrop-blur-md
         border-b border-[var(--border-light)]/10
-        sticky top-0 z-[10] "
+        sticky top-0 z-[100] "
       >
         {/* LEFT */}
         <div className="flex items-center gap-6">
