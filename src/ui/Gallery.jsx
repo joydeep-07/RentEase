@@ -61,18 +61,17 @@ const Gallery = () => {
     aspectRatio: "1 / 1",
     width: "100%",
     maxWidth: "100%",
-    borderRadius: isMobile ? "12px" : "0px",
     overflow: "hidden",
   });
 
-  const imgStyle = {
-    width: "80%",
-    height: "80%",
-    objectFit: "cover",
-    display: "block",
-    padding: "6px",
-    border: "1px solid var(--text-muted) "
-  };
+ const imgStyle = {
+   width: isMobile ? "70%" : "80%",
+   height: isMobile ? "70%" : "80%", 
+   objectFit: "cover",
+   display: "block",
+   padding: isMobile ? "4px" : "6px", 
+   border: "1px solid var(--text-muted)",
+ };
 
 useEffect(() => {
   const ctx = gsap.context(() => {
@@ -80,8 +79,8 @@ useEffect(() => {
       if (!el) return;
 
       // Horizontal movement Pattern
-      const direction = i % 2 === 0 ? 1 : -1; // alternate
-      const intensity = ((i % 3) + 1) * 8; // 8,16,24 variation
+      const direction = i % 2 === 0 ? 1 : -1; 
+      const intensity = ((i % 3) + 1) * 8; 
 
       // Horizontal movement
       gsap.to(el, {
@@ -154,7 +153,7 @@ useEffect(() => {
         className=" w-full "
         style={{
           display: "grid",
-          gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(8, 1fr)",
+          gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(8, 1fr)",
           gridTemplateRows: isMobile ? "auto" : "repeat(10, 1fr)",
           gap: isMobile ? "10px" : "6px",
           width: "100%",
@@ -230,8 +229,6 @@ useEffect(() => {
         <div style={boxStyle(10, 7)} ref={(el) => (imagesRef.current[19] = el)}>
           <img src={fridge5} style={imgStyle} />
         </div>
-
-        {/* EXTRA IMAGES (added, no design change) */}
 
         <div style={boxStyle(1, 4)} ref={(el) => (imagesRef.current[20] = el)}>
           <img src={cam6} style={imgStyle} />
