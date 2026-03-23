@@ -37,6 +37,7 @@ import sofa7 from "../assets/sofa/sofa7.jpg";
 import sofa8 from "../assets/sofa/sofa8.jpg";
 import sofa9 from "../assets/sofa/sofa9.jpg";
 import sofa10 from "../assets/sofa/sofa10.jpg";
+import TextPressure from "../components/TextPressure";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -126,11 +127,22 @@ useEffect(() => {
       {/* Center Fixed Text */}
       <div className="fixed inset-0 z-[100] flex items-center justify-center text-center pointer-events-none px-4">
         <div>
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-medium text-[var(--text-main)] tracking-wider">
-            RENT EASE
-          </h1>
-          <p className="mt-2 text-xs sm:text-lg md:text-4xl text-[var(--text-secondary)]">
-            Premium products at your fingertips
+          <div style={{ position: "relative" }}>
+            <TextPressure
+              text="Rent Ease."
+              flex
+              alpha={false}
+              stroke={true}
+              width
+              weight
+              italic
+              textColor="var(--text-main)"
+              strokeColor="var(--text-main)"
+              minFontSize={36}
+            />
+          </div>
+          <p className="mt-2 text-xs sm:text-lg md:text-3xl font-fuzzy text-[var(--text-main)]">
+            Commitment Issues ?? Just rent everything !
           </p>
         </div>
       </div>
@@ -144,7 +156,7 @@ useEffect(() => {
           gridTemplateRows: isMobile ? "auto" : "repeat(10, 1fr)",
           gap: isMobile ? "10px" : "6px",
           width: "100%",
-          padding: isMobile ? "10px" : "0px", 
+          padding: isMobile ? "10px" : "0px",
         }}
       >
         <div style={boxStyle(1, 2)} ref={(el) => (imagesRef.current[0] = el)}>
