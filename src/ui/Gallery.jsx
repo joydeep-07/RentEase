@@ -45,7 +45,6 @@ const Gallery = () => {
   const imagesRef = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
 
-  // detect screen size
   useEffect(() => {
     const checkScreen = () => {
       setIsMobile(window.innerWidth < 640);
@@ -150,7 +149,7 @@ useEffect(() => {
 
       {/* Gallery */}
       <div
-        className=" w-full "
+        className=" w-full overflow-x-hidden "
         style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "repeat(3, 1fr)" : "repeat(8, 1fr)",
