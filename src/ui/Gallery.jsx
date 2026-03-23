@@ -242,7 +242,7 @@ useEffect(() => {
           <img src={cam8} style={imgStyle} />
         </div>
 
-        <div style={boxStyle(4, 4)} ref={(el) => (imagesRef.current[23] = el)}>
+        {/* <div style={boxStyle(4, 4)} ref={(el) => (imagesRef.current[23] = el)}>
           <img src={cam9} style={imgStyle} />
         </div>
 
@@ -268,7 +268,7 @@ useEffect(() => {
 
         <div style={boxStyle(10, 5)} ref={(el) => (imagesRef.current[29] = el)}>
           <img src={sofa10} style={imgStyle} />
-        </div>
+        </div> */}
       </div>
     </div>
   );
