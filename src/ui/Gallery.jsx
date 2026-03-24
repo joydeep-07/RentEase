@@ -95,20 +95,21 @@ useEffect(() => {
       });
 
       //Shrink Animation
-      gsap.fromTo(
-        el,
-        { scale: 1 },
-        {
-          scale: 0.5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 20%",
-            end: "top top",
-            scrub: true,
-          },
-        },
-      );
+     gsap.fromTo(
+  el,
+  { scale: 1, x: 0 },
+  {
+    scale: 0.5,
+    x: direction * 40, // 👈 left/right based on index
+    ease: "none",
+    scrollTrigger: {
+      trigger: el,
+      start: "top 20%",
+      end: "top top",
+      scrub: true,
+    },
+  }
+);
     });
   });
 
@@ -180,6 +181,10 @@ useEffect(() => {
           <img src={cam2} style={imgStyle} />
         </div>
 
+        <div style={boxStyle(5, 4)} ref={(el) => (imagesRef.current[8] = el)}>
+          <img src={bed3} style={imgStyle} />
+        </div>
+
         <div style={boxStyle(4, 2)} ref={(el) => (imagesRef.current[6] = el)}>
           <img src={sofa2} style={imgStyle} />
         </div>
@@ -187,11 +192,12 @@ useEffect(() => {
           <img src={fridge2} style={imgStyle} />
         </div>
 
-        <div style={boxStyle(5, 4)} ref={(el) => (imagesRef.current[8] = el)}>
-          <img src={bed3} style={imgStyle} />
-        </div>
         <div style={boxStyle(5, 6)} ref={(el) => (imagesRef.current[9] = el)}>
           <img src={cam3} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(7, 3)} ref={(el) => (imagesRef.current[12] = el)}>
+          <img src={bed4} style={imgStyle} />
         </div>
 
         <div style={boxStyle(6, 1)} ref={(el) => (imagesRef.current[10] = el)}>
@@ -201,15 +207,16 @@ useEffect(() => {
           <img src={fridge3} style={imgStyle} />
         </div>
 
-        <div style={boxStyle(7, 3)} ref={(el) => (imagesRef.current[12] = el)}>
-          <img src={bed4} style={imgStyle} />
-        </div>
         <div style={boxStyle(7, 5)} ref={(el) => (imagesRef.current[13] = el)}>
           <img src={cam4} style={imgStyle} />
         </div>
 
         <div style={boxStyle(8, 2)} ref={(el) => (imagesRef.current[14] = el)}>
           <img src={sofa4} style={imgStyle} />
+        </div>
+
+        <div style={boxStyle(9, 6)} ref={(el) => (imagesRef.current[17] = el)}>
+          <img src={cam5} style={imgStyle} />
         </div>
         <div style={boxStyle(8, 8)} ref={(el) => (imagesRef.current[15] = el)}>
           <img src={fridge4} style={imgStyle} />
@@ -218,19 +225,16 @@ useEffect(() => {
         <div style={boxStyle(9, 4)} ref={(el) => (imagesRef.current[16] = el)}>
           <img src={bed5} style={imgStyle} />
         </div>
-        <div style={boxStyle(9, 6)} ref={(el) => (imagesRef.current[17] = el)}>
-          <img src={cam5} style={imgStyle} />
-        </div>
 
         <div style={boxStyle(10, 1)} ref={(el) => (imagesRef.current[18] = el)}>
           <img src={sofa5} style={imgStyle} />
         </div>
-        <div style={boxStyle(10, 7)} ref={(el) => (imagesRef.current[19] = el)}>
-          <img src={fridge5} style={imgStyle} />
-        </div>
 
         <div style={boxStyle(1, 4)} ref={(el) => (imagesRef.current[20] = el)}>
           <img src={cam6} style={imgStyle} />
+        </div>
+        <div style={boxStyle(10, 7)} ref={(el) => (imagesRef.current[19] = el)}>
+          <img src={fridge5} style={imgStyle} />
         </div>
 
         <div style={boxStyle(2, 5)} ref={(el) => (imagesRef.current[21] = el)}>
