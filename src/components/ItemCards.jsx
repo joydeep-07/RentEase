@@ -80,7 +80,7 @@ const ItemCards = ({ items = [], limit }) => {
           bg-[var(--bg-secondary)]
           shadow-lg transition-all duration-300"
         >
-          {/* Wishlist */}
+         
           <button
             className="wishlist-btn absolute top-3 right-3 z-10 
             bg-[var(--text-main)]/80 backdrop-blur-md
