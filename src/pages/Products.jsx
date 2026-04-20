@@ -20,7 +20,7 @@ const Products = () => {
     inStock: false,
   });
 
-  /* ---------------- MOBILE FILTER STATE ---------------- */
+  /* ---------------- MOBILE FILTER STATE RESPONSIVE ---------------- */
 
 const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 const drawerRef = useRef(null);
