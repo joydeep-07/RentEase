@@ -117,7 +117,7 @@ const closeMobileFilter = () => {
 
   return (
     <div className="flex bg-[var(--bg-primary)]">
-      {/* Desktop Sidebar (UNCHANGED) */}
+      {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-80 xl:w-96 shrink-0">
         <div className="sticky top-16">
           <Filter
